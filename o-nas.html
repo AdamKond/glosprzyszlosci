@@ -221,6 +221,7 @@
   m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;m.classList.remove('open');s1.style.transform=s2.style.opacity=s3.style.transform='';}));
   document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08}).observe(el);});
 </script>
+<script src="_beams.js"></script>
 <script src="_cursor.js"></script>
 </body>
 </html>

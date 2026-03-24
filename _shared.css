@@ -95,7 +95,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; color: #0D1B2A; margin: 0; 
   background: radial-gradient(ellipse at 70% 50%, rgba(43,107,255,0.14) 0%, transparent 65%),
               radial-gradient(ellipse at 10% 80%, rgba(255,107,43,0.07) 0%, transparent 55%);
 }
-.page-hero .container { position: relative; z-index: 1; }
+.page-hero .container { position: relative; z-index: 2; }
 .page-hero .badge {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(43,107,255,0.12); color: #5B8FFF;
