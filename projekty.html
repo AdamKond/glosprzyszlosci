@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projekty – Głos Przyszłości</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="_shared.css" />
+  <style>
+    .proj-card { background:white; border-radius:22px; overflow:hidden; box-shadow:0 4px 24px rgba(13,27,42,0.07); display:flex; flex-direction:column; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s; }
+    .proj-card:hover { transform:translateY(-6px); box-shadow:0 20px 56px rgba(43,107,255,0.13); }
+    .proj-card-top { height: 6px; }
+    .proj-card-body { padding:28px; flex:1; display:flex; flex-direction:column; }
+    .proj-tag { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:10px; }
+    .proj-card-body h3 { font-size:18px; font-weight:700; color:#0D1B2A; margin:0 0 10px; line-height:1.3; }
+    .proj-card-body p { font-size:14px; color:#6B7280; line-height:1.65; margin:0 0 20px; flex:1; }
+    .proj-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:100px; font-size:12px; font-weight:700; }
+    .help-card { padding:32px 28px; border-radius:22px; }
+    .num-circle { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; flex-shrink:0; }
+    .open-item { padding:18px 0; border-bottom:1px solid #E8ECF8; display:flex; gap:14px; align-items:flex-start; }
+    .open-item:last-child { border-bottom:none; }
+    .check-icon { width:24px; height:24px; border-radius:8px; background:rgba(43,107,255,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  </style>
+</head>
+<body>
+<div id="page-loader">
+  <div class="loader-logo-wrap">
+    <img src="brand_assets/glos logo.png" alt="" />
+    <div class="loader-logo-text"><div class="t">GŁOS</div><div class="b">PRZYSZŁOŚCI</div></div>
+  </div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+<nav id="navbar">
+  <div class="inner">
+    <a href="index.html" class="nav-logo"><img src="brand_assets/glos logo.png" alt="Głos Przyszłości" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a>
+    <div class="nav-links"><a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html" class="active">Projekty</a><a href="demokracja.html">Demokracja</a><a href="dolacz.html">Dołącz</a><a href="blog.html">Blog</a><a href="kontakt.html" class="nav-cta">Kontakt</a></div>
+    <button id="hamburger" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+  <div id="mobile-menu"><a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a><a href="dolacz.html">Dołącz do nas</a><a href="blog.html">Blog</a><a href="kontakt.html">Kontakt</a></div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="badge">Realizujemy zmiany</div>
+    <h1>Nasze <span>Projekty</span></h1>
+    <p>Wdrażamy trwałe, pozytywne zmiany społeczne, kulturalne, edukacyjne i zdrowotne. Za każdym projektem stoi doświadczony zespół pasjonatów.</p>
+  </div>
+</div>
+
+<!-- 4 OBSZARY -->
+<section class="sec sec-white reveal">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span class="label">Obszary działania</span>
+      <h2 class="section-title">Jakie projekty?</h2>
+    </div>
+    <div class="grid-4">
+      <div class="proj-card">
+        <div class="proj-card-top" style="background:linear-gradient(90deg,#2B6BFF,#5B8FFF);"></div>
+        <div class="proj-card-body">
+          <div class="proj-tag" style="color:#2B6BFF;">Obszar 1</div>
+          <h3>Społeczne</h3>
+          <p>Przeciwdziałanie wykluczeniu, aktywizacja społeczna, integracja oraz wzmacnianie więzi społecznych.</p>
+          <div class="proj-badge" style="background:rgba(43,107,255,0.1);color:#2B6BFF;">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#2B6BFF" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#2B6BFF" stroke-width="2"/></svg>
+            Aktywizacja i integracja
+          </div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-card-top" style="background:linear-gradient(90deg,#FF6B2B,#FF8C57);"></div>
+        <div class="proj-card-body">
+          <div class="proj-tag" style="color:#FF6B2B;">Obszar 2</div>
+          <h3>Zdrowotne</h3>
+          <p>Promocja zdrowia publicznego, działania profilaktyczne, wsparcie medyczne oraz edukacja zdrowotna.</p>
+          <div class="proj-badge" style="background:rgba(255,107,43,0.1);color:#FF6B2B;">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#FF6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Zdrowie i profilaktyka
+          </div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-card-top" style="background:linear-gradient(90deg,#2B6BFF,#FF6B2B);"></div>
+        <div class="proj-card-body">
+          <div class="proj-tag" style="color:#2B6BFF;">Obszar 3</div>
+          <h3>Edukacyjne</h3>
+          <p>Wspieranie kompetencji, edukacja formalna i nieformalna, kursy oraz szkolenia specjalistyczne.</p>
+          <div class="proj-badge" style="background:rgba(43,107,255,0.1);color:#2B6BFF;">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#2B6BFF" stroke-width="2" stroke-linejoin="round"/></svg>
+            Kompetencje i wiedza
+          </div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-card-top" style="background:linear-gradient(90deg,#FF6B2B,#2B6BFF);"></div>
+        <div class="proj-card-body">
+          <div class="proj-tag" style="color:#FF6B2B;">Obszar 4</div>
+          <h3>Technologiczne</h3>
+          <p>Rozwój kompetencji cyfrowych, promocja innowacyjnych rozwiązań technologicznych i cyfryzacji.</p>
+          <div class="proj-badge" style="background:rgba(255,107,43,0.1);color:#FF6B2B;">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke="#FF6B2B" stroke-width="2"/><line x1="8" y1="21" x2="16" y2="21" stroke="#FF6B2B" stroke-width="2" stroke-linecap="round"/></svg>
+            Cyfryzacja i tech
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<section class="sec-white reveal" style="padding:0 0 48px;">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px; border-radius:16px; overflow:hidden;">
+      <div style="height:220px; overflow:hidden;"><img src="brand_assets/dzialania1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" /></div>
+      <div style="height:220px; overflow:hidden;"><img src="brand_assets/dzialania 5.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" /></div>
+      <div style="height:220px; overflow:hidden;"><img src="brand_assets/dzialania 6.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- OTWARCI NA -->
+<section class="sec sec-gray reveal">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;">
+      <div>
+        <span class="label">Priorytety</span>
+        <h2 class="section-title" style="margin-bottom:8px;">Szczególnie otwarci na:</h2>
+        <p style="color:#6B7280; margin-bottom:32px;">Inicjatywy w tych obszarach mogą liczyć na nasze wzmożone wsparcie i zaangażowanie.</p>
+        <div>
+          <div class="open-item">
+            <div class="check-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke="#2B6BFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div>
+              <div style="font-weight:700; color:#0D1B2A; font-size:15px; margin-bottom:3px;">Równy dostęp do edukacji</div>
+              <div style="font-size:14px; color:#6B7280; line-height:1.6;">Projekty eliminujące bariery w dostępie do wiedzy i rozwijające kompetencje kluczowe na rynku pracy.</div>
+            </div>
+          </div>
+          <div class="open-item">
+            <div class="check-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke="#2B6BFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div>
+              <div style="font-weight:700; color:#0D1B2A; font-size:15px; margin-bottom:3px;">Ochrona środowiska</div>
+              <div style="font-size:14px; color:#6B7280; line-height:1.6;">Inicjatywy promujące ekologiczny styl życia, ochronę przyrody i zrównoważony rozwój.</div>
+            </div>
+          </div>
+          <div class="open-item">
+            <div class="check-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke="#2B6BFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div>
+              <div style="font-weight:700; color:#0D1B2A; font-size:15px; margin-bottom:3px;">Kompetencje cyfrowe</div>
+              <div style="font-size:14px; color:#6B7280; line-height:1.6;">Działania rozwijające umiejętności cyfrowe wśród różnych grup wiekowych i społecznych.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="label">Kryteria wsparcia</span>
+        <h2 class="section-title" style="margin-bottom:8px;">Co bierzemy pod uwagę?</h2>
+        <p style="color:#6B7280; margin-bottom:32px;">Każdy projekt oceniamy według tych 6 kryteriów.</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:14px; align-items:center; padding:16px 20px; background:white; border-radius:14px; box-shadow:0 2px 10px rgba(13,27,42,0.05);">
+            <div class="num-circle" style="background:rgba(43,107,255,0.12);color:#2B6BFF;">1</div>
+            <div><div style="font-weight:700;color:#0D1B2A;font-size:14px;">Jasno sprecyzowane cele</div><div style="font-size:13px;color:#6B7280;">Konkretne, mierzalne cele i plan działania.</div></div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:center; padding:16px 20px; background:white; border-radius:14px; box-shadow:0 2px 10px rgba(13,27,42,0.05);">
+            <div class="num-circle" style="background:rgba(255,107,43,0.12);color:#FF6B2B;">2</div>
+            <div><div style="font-weight:700;color:#0D1B2A;font-size:14px;">Realny wpływ</div><div style="font-size:13px;color:#6B7280;">Potencjał trwałego oddziaływania na społeczność.</div></div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:center; padding:16px 20px; background:white; border-radius:14px; box-shadow:0 2px 10px rgba(13,27,42,0.05);">
+            <div class="num-circle" style="background:rgba(43,107,255,0.12);color:#2B6BFF;">3</div>
+            <div><div style="font-weight:700;color:#0D1B2A;font-size:14px;">Długoterminowa perspektywa</div><div style="font-size:13px;color:#6B7280;">Trwałość efektów po zakończeniu projektu.</div></div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:center; padding:16px 20px; background:white; border-radius:14px; box-shadow:0 2px 10px rgba(13,27,42,0.05);">
+            <div class="num-circle" style="background:rgba(255,107,43,0.12);color:#FF6B2B;">4</div>
+            <div><div style="font-weight:700;color:#0D1B2A;font-size:14px;">Innowacyjność</div><div style="font-size:13px;color:#6B7280;">Nowoczesne metody i kreatywne podejście.</div></div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:center; padding:16px 20px; background:white; border-radius:14px; box-shadow:0 2px 10px rgba(13,27,42,0.05);">
+            <div class="num-circle" style="background:rgba(43,107,255,0.12);color:#2B6BFF;">5</div>
+            <div><div style="font-weight:700;color:#0D1B2A;font-size:14px;">Zaangażowanie społeczności</div><div style="font-size:13px;color:#6B7280;">Partycypacja i współodpowiedzialność za wyniki.</div></div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:center; padding:16px 20px; background:white; border-radius:14px; box-shadow:0 2px 10px rgba(13,27,42,0.05);">
+            <div class="num-circle" style="background:rgba(255,107,43,0.12);color:#FF6B2B;">6</div>
+            <div><div style="font-weight:700;color:#0D1B2A;font-size:14px;">Przyjazność 🙂</div><div style="font-size:13px;color:#6B7280;">Projekty przyjazne dla wszystkich uczestników.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JAK POMAGAMY -->
+<section class="sec sec-dark noise reveal">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span class="label label-light">Nasze wsparcie</span>
+      <h2 class="section-title light">W jaki sposób pomagamy projektom?</h2>
+    </div>
+    <div class="grid-4">
+      <div class="help-card card-dark">
+        <div class="icon-box icon-box-blue-dark" style="margin-bottom:20px;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#5B8FFF" stroke-width="2"/><path d="M12 8v4l3 3" stroke="#5B8FFF" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div style="font-weight:700; color:white; margin-bottom:8px; font-size:16px;">Wsparcie eksperckie</div>
+        <div style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.65;">Dostęp do specjalistów z różnych dziedzin. Sesje mentoringowe i konsultacje dla zespołów projektowych.</div>
+      </div>
+      <div class="help-card card-dark">
+        <div class="icon-box icon-box-orange-dark" style="margin-bottom:20px;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="#FF8C57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div style="font-weight:700; color:white; margin-bottom:8px; font-size:16px;">Doradztwo strategiczne</div>
+        <div style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.65;">Kompleksowe strategie projektowe, planowanie działań i zarządzanie zasobami dla płynnej realizacji.</div>
+      </div>
+      <div class="help-card card-dark">
+        <div class="icon-box icon-box-blue-dark" style="margin-bottom:20px;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23" stroke="#5B8FFF" stroke-width="2" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="#5B8FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div style="font-weight:700; color:white; margin-bottom:8px; font-size:16px;">Finansowanie</div>
+        <div style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.65;">Wsparcie finansowe bezpośrednie. Pomoc w pozyskiwaniu grantów, dotacji i sponsorów.</div>
+      </div>
+      <div class="help-card card-dark">
+        <div class="icon-box icon-box-orange-dark" style="margin-bottom:20px;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" stroke="#FF8C57" stroke-width="2"/><circle cx="6" cy="12" r="3" stroke="#FF8C57" stroke-width="2"/><circle cx="18" cy="19" r="3" stroke="#FF8C57" stroke-width="2"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="#FF8C57" stroke-width="2" stroke-linecap="round"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="#FF8C57" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div style="font-weight:700; color:white; margin-bottom:8px; font-size:16px;">Promocja i networking</div>
+        <div style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.65;">Skuteczna komunikacja, relacje z mediami i ułatwianie współpracy z innymi organizacjami.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="footer-top-bar"></div><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo"><img src="brand_assets/glos logo.png" alt="" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a><p>Budujemy pokolenie świadomych obywateli poprzez edukację, dialog i zaangażowanie społeczne.</p><span class="footer-award"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Dwukrotny Złoty Wilk</span></div><div class="footer-col"><div class="footer-col-title">Strony</div><a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a></div><div class="footer-col"><div class="footer-col-title">Działaj</div><a href="dolacz.html">Dołącz do nas</a><a href="blog.html">Blog</a><a href="kontakt.html">Kontakt</a><a href="#">Polityka prywatności</a><a href="#">RODO</a></div><div class="footer-col"><div class="footer-col-title">Kontakt</div><a href="mailto:kontakt@glosprzyszlosci.pl">kontakt@glosprzyszlosci.pl</a><a href="http://glosprzyszlosci.pl">glosprzyszlosci.pl</a></div></div><div class="footer-bottom"><span>© 2025 Głos Przyszłości. Wszelkie prawa zastrzeżone.</span><div class="footer-bottom-links"><a href="#">Polityka prywatności</a><a href="#">RODO</a><a href="kontakt.html">Kontakt</a></div></div></div></footer>
+<script>const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),s1=document.getElementById('h1'),s2=document.getElementById('h2'),s3=document.getElementById('h3');let open=false;h.addEventListener('click',()=>{open=!open;open?m.classList.add('open'):m.classList.remove('open');s1.style.transform=open?'rotate(45deg) translate(4px,4px)':'';s2.style.opacity=open?'0':'';s3.style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;m.classList.remove('open');s1.style.transform=s2.style.opacity=s3.style.transform='';}));document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1}).observe(el);});</script>
+<script src="_cursor.js"></script>
+</body></html>

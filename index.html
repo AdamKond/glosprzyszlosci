@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Głos Przyszłości – Strona główna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="_shared.css" />
+  <style>
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .announce-bar {
+      background: linear-gradient(90deg, #1A3A8A 0%, #2B6BFF 50%, #1A3A8A 100%);
+      background-size: 200% 100%;
+      animation: announceShift 4s ease infinite;
+      padding: 9px 32px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      height: 36px;
+    }
+    .announce-bar a { color: #FFD080; text-decoration: none; font-weight: 700; }
+    .announce-bar a:hover { text-decoration: underline; }
+    @keyframes announceShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+    .announce-dot { width: 7px; height: 7px; border-radius: 50%; background: #FFD080; animation: pulseDot 2s ease infinite; flex-shrink: 0; }
+    @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+
+    /* ── NAVBAR UPGRADED ── */
+    #navbar { padding-top: 0; top: 36px; }
+    #navbar .inner { height: 62px; }
+    .nav-underline { position: relative; }
+    .nav-underline::after { content:''; position:absolute; bottom:-4px; left:0; right:0; height:2px; border-radius:2px; background:#2B6BFF; transform:scaleX(0); transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1); transform-origin: center; }
+    .nav-underline:hover::after, .nav-underline.active::after { transform:scaleX(1); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: 98px;
+      background: #0D1B2A;
+      --grid-size: 40px;
+    }
+
+    .hero-grid-base {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.06;
+      background-image: linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+      animation: gridScroll 2.5s linear infinite;
+    }
+    .hero-grid-reveal {
+      position: absolute; inset: 0; z-index: 1; opacity: 0.5;
+      background-image: linear-gradient(to right, rgba(43,107,255,1) 1px, transparent 1px), linear-gradient(to bottom, rgba(43,107,255,1) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+      animation: gridScroll 2.5s linear infinite;
+      -webkit-mask-image: radial-gradient(300px circle at 50% 40%, black, transparent);
+      mask-image: radial-gradient(300px circle at 50% 40%, black, transparent);
+      transition: -webkit-mask-image 0.05s, mask-image 0.05s;
+    }
+    @keyframes gridScroll { from{background-position:0 0} to{background-position:var(--grid-size) var(--grid-size)} }
+
+    .hero-sphere { position:absolute; border-radius:50%; pointer-events:none; z-index:0; }
+    .hero-sphere-orange { right:-15%; top:-15%; width:50%; height:50%; background:rgba(255,107,43,0.3); filter:blur(120px); animation:floatSphere 8s ease-in-out infinite; }
+    .hero-sphere-blue { left:-10%; bottom:-20%; width:45%; height:45%; background:rgba(43,107,255,0.3); filter:blur(120px); animation:floatSphere 10s ease-in-out infinite reverse; }
+    .hero-sphere-primary { right:8%; top:-8%; width:22%; height:22%; background:rgba(43,107,255,0.2); filter:blur(90px); animation:floatSphere 6s ease-in-out infinite; }
+    @keyframes floatSphere { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-30px) scale(1.05)} }
+
+    /* Floating decorative particles */
+    .hero-particle { position:absolute; pointer-events:none; z-index:2; border-radius:50%; }
+    .hp1 { width:6px; height:6px; background:rgba(43,107,255,0.6); top:20%; left:15%; animation:floatParticle 7s ease-in-out infinite; }
+    .hp2 { width:4px; height:4px; background:rgba(255,107,43,0.5); top:35%; right:18%; animation:floatParticle 9s ease-in-out infinite 1s; }
+    .hp3 { width:8px; height:8px; background:rgba(43,107,255,0.4); bottom:30%; left:25%; animation:floatParticle 11s ease-in-out infinite 2s; }
+    .hp4 { width:5px; height:5px; background:rgba(255,255,255,0.2); top:60%; right:28%; animation:floatParticle 8s ease-in-out infinite 0.5s; }
+    .hp5 { width:3px; height:3px; background:rgba(43,107,255,0.7); top:15%; right:38%; animation:floatParticle 6s ease-in-out infinite 3s; }
+    .hp6 { width:7px; height:7px; background:rgba(255,107,43,0.3); bottom:20%; right:12%; animation:floatParticle 12s ease-in-out infinite 1.5s; }
+    @keyframes floatParticle { 0%,100%{transform:translateY(0) translateX(0) opacity(1)} 33%{transform:translateY(-20px) translateX(8px)} 66%{transform:translateY(-10px) translateX(-5px)} }
+
+    .hero-content {
+      position:relative; z-index:10; width:100%;
+      display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 32px;
+    }
+    .hero-award-row { display:flex; gap:10px; margin-bottom:32px; flex-wrap:wrap; justify-content:center; animation:fadeInDown 0.8s ease both; }
+    .hero-pill { display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:100px; font-size:13px; font-weight:700; backdrop-filter:blur(10px); }
+    .hero-pill-gold { background:rgba(255,107,43,0.2); color:#FFB080; border:1px solid rgba(255,107,43,0.35); }
+    .hero-pill-blue { background:rgba(43,107,255,0.2); color:#5B8FFF; border:1px solid rgba(43,107,255,0.35); }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7.5vw, 6rem);
+      font-weight:800; letter-spacing:-0.04em; line-height:0.95; color:white; margin:0 0 24px; max-width:860px;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    .hero h1 .accent { color:#2B6BFF; }
+    .hero-sub { color:rgba(255,255,255,0.6); font-size:18px; line-height:1.75; max-width:480px; margin:0 0 40px; animation:fadeInUp 0.8s ease 0.35s both; }
+    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-bottom:64px; animation:fadeInUp 0.8s ease 0.5s both; }
+    .hero-stats-bar {
+      display:flex; gap:0; padding-top:40px; border-top:1px solid rgba(255,255,255,0.1);
+      flex-wrap:wrap; justify-content:center; width:100%; max-width:700px; animation:fadeInUp 0.8s ease 0.65s both;
+    }
+    .hero-stat { display:flex; flex-direction:column; align-items:center; padding:0 36px; border-right:1px solid rgba(255,255,255,0.1); }
+    .hero-stat:last-child { border-right:none; }
+    .hero-stat .n { font-size:1.9rem; font-weight:800; color:white; letter-spacing:-0.04em; line-height:1; }
+    .hero-stat .l { font-size:13px; color:rgba(255,255,255,0.4); margin-top:4px; font-weight:500; }
+
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    .scroll-hint {
+      position:absolute; bottom:32px; left:50%; transform:translateX(-50%); z-index:20;
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      color:rgba(255,255,255,0.3); font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+    }
+    .scroll-hint svg { animation:bounce 2s ease-in-out infinite; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+
+    /* ── PHOTO MOSAIC ── */
+    .photo-mosaic { display:grid; grid-template-columns:1.3fr 1fr 1fr; grid-template-rows:260px 260px; gap:6px; }
+    .photo-mosaic .p1 { grid-row:1/3; }
+    .photo-mosaic .p2 { grid-row:1; }
+    .photo-mosaic .p3 { grid-row:1; }
+    .photo-mosaic .p4 { grid-row:2; }
+    .photo-mosaic .p5 { grid-row:2; }
+    .photo-tile { overflow:hidden; border-radius:12px; position:relative; }
+    .photo-tile img { width:100%; height:100%; object-fit:cover; transition:transform 0.65s ease; display:block; }
+    .photo-tile:hover img { transform:scale(1.05); }
+    .photo-tile::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(13,27,42,0.3) 0%, transparent 50%); opacity:0; transition:opacity 0.3s; }
+    .photo-tile:hover::after { opacity:1; }
+
+    /* ── AWARD SECTION ── */
+    .award-photo-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .award-block { border-radius:20px; overflow:hidden; position:relative; }
+    .award-block img { width:100%; height:280px; object-fit:cover; display:block; transition:transform 0.6s ease; }
+    .award-block:hover img { transform:scale(1.04); }
+    .award-block-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(13,27,42,0.88) 0%, transparent 60%); display:flex; flex-direction:column; justify-content:flex-end; padding:28px; }
+    .award-badge { display:inline-block; padding:4px 14px; border-radius:100px; font-size:11px; font-weight:700; background:rgba(255,107,43,0.3); color:#FFB080; border:1px solid rgba(255,107,43,0.5); margin-bottom:10px; width:fit-content; }
+    .award-title { color:white; font-size:1.3rem; font-weight:800; letter-spacing:-0.02em; line-height:1.2; }
+
+    /* ── FEATURE CARDS (replacing preview cards) ── */
+    .preview-card { border-radius:20px; overflow:hidden; background:white; box-shadow:0 4px 24px rgba(13,27,42,0.07); display:flex; flex-direction:column; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s; text-decoration:none; }
+    .preview-card:hover { transform:translateY(-8px); box-shadow:0 24px 60px rgba(43,107,255,0.16); }
+    .preview-thumb { height:180px; overflow:hidden; position:relative; }
+    .preview-thumb img { width:100%; height:100%; object-fit:cover; transition:transform 0.55s ease; display:block; }
+    .preview-card:hover .preview-thumb img { transform:scale(1.07); }
+    .preview-thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, transparent 60%, rgba(13,27,42,0.15)); }
+    .preview-body { padding:24px; flex:1; display:flex; flex-direction:column; }
+    .preview-tag { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
+    .preview-body h3 { font-size:17px; font-weight:700; color:#0D1B2A; margin:0 0 8px; line-height:1.3; }
+    .preview-body p { font-size:14px; color:#6B7280; line-height:1.65; margin:0 0 16px; flex:1; }
+    .preview-link { font-size:13px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:gap 0.2s; }
+    .preview-card:hover .preview-link { gap:10px; }
+
+    /* ── CTA — REDESIGNED "JAK MOŻESZ NAM POMÓC" ── */
+    .help-section {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #060e18 0%, #0D1B2A 30%, #0f2347 60%, #0D1B2A 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .help-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 0% 100%, rgba(255,107,43,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 0%, rgba(43,107,255,0.18) 0%, transparent 50%);
+    }
+    .help-bg-blob1 { position:absolute; top:-80px; left:-80px; width:500px; height:500px; border-radius:50%; background:rgba(43,107,255,0.15); filter:blur(100px); pointer-events:none; animation:floatSphere 12s ease-in-out infinite; }
+    .help-bg-blob2 { position:absolute; bottom:-100px; right:-60px; width:450px; height:450px; border-radius:50%; background:rgba(255,107,43,0.12); filter:blur(100px); pointer-events:none; animation:floatSphere 9s ease-in-out infinite reverse; }
+
+    .help-header { text-align:center; margin-bottom:60px; position:relative; z-index:1; }
+    .help-header .label { color:#5B8FFF; }
+    .help-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .help-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px;
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .help-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      opacity: 0;
+      transition: opacity 0.4s;
+      background: radial-gradient(ellipse at top left, rgba(43,107,255,0.15), transparent 70%);
+    }
+    .help-card:hover { background:rgba(255,255,255,0.07); border-color:rgba(43,107,255,0.4); transform:translateY(-6px); }
+    .help-card:hover::before { opacity:1; }
+    .help-card.featured { background:linear-gradient(135deg, rgba(43,107,255,0.25), rgba(43,107,255,0.1)); border-color:rgba(43,107,255,0.5); }
+    .help-card.featured:hover { border-color:rgba(43,107,255,0.8); }
+
+    .help-icon-wrap {
+      width: 60px; height: 60px; border-radius: 18px; display:flex; align-items:center; justify-content:center;
+      margin-bottom: 24px; font-size: 26px; position:relative;
+    }
+    .help-icon-wrap.blue { background:rgba(43,107,255,0.2); box-shadow:0 4px 20px rgba(43,107,255,0.3); }
+    .help-icon-wrap.orange { background:rgba(255,107,43,0.2); box-shadow:0 4px 20px rgba(255,107,43,0.3); }
+    .help-icon-wrap.green { background:rgba(34,197,94,0.2); box-shadow:0 4px 20px rgba(34,197,94,0.3); }
+
+    .help-card h3 { font-size:1.2rem; font-weight:800; color:white; margin:0 0 10px; letter-spacing:-0.02em; }
+    .help-card p { font-size:14px; color:rgba(255,255,255,0.55); line-height:1.7; margin:0 0 28px; flex:1; }
+    .help-card-cta {
+      display: inline-flex; align-items:center; gap:8px;
+      padding: 11px 22px; border-radius: 10px; font-size:14px; font-weight:700;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s, gap 0.2s;
+      width: fit-content;
+    }
+    .help-card-cta:hover { transform:translateY(-2px); gap:12px; }
+    .help-card-cta.blue { background:#2B6BFF; color:white; box-shadow:0 4px 20px rgba(43,107,255,0.4); }
+    .help-card-cta.blue:hover { background:#1A4FCC; box-shadow:0 8px 32px rgba(43,107,255,0.55); }
+    .help-card-cta.orange { background:#FF6B2B; color:white; box-shadow:0 4px 20px rgba(255,107,43,0.4); }
+    .help-card-cta.orange:hover { background:#e55a1f; box-shadow:0 8px 32px rgba(255,107,43,0.55); }
+    .help-card-cta.outline { background:transparent; color:white; border:2px solid rgba(255,255,255,0.25); }
+    .help-card-cta.outline:hover { border-color:white; background:rgba(255,255,255,0.08); }
+
+    .help-card-num {
+      position:absolute; top:20px; right:20px;
+      font-size:5rem; font-weight:800; color:rgba(255,255,255,0.03); letter-spacing:-0.05em; line-height:1;
+      pointer-events:none;
+    }
+
+    /* ── BLOG SECTION (Coming Soon) ── */
+    .blog-section {
+      padding: 100px 0;
+      background: #F5F7FF;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-soon-badge {
+      display: inline-flex; align-items:center; gap:8px;
+      background: rgba(255,107,43,0.12); color:#FF6B2B; border:1px solid rgba(255,107,43,0.3);
+      padding:6px 16px; border-radius:100px; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+      margin-bottom: 12px;
+    }
+    .blog-coming-card {
+      background: white;
+      border-radius: 24px;
+      border: 1.5px dashed #CBD5E1;
+      padding: 80px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-coming-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(43,107,255,0.06), transparent 70%);
+    }
+    .blog-icon-ring {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(43,107,255,0.15), rgba(43,107,255,0.05));
+      border: 2px solid rgba(43,107,255,0.2);
+      display: flex; align-items:center; justify-content:center;
+      margin-bottom: 28px;
+      animation: pulseRing 3s ease-in-out infinite;
+    }
+    @keyframes pulseRing { 0%,100%{box-shadow:0 0 0 0 rgba(43,107,255,0.15)} 50%{box-shadow:0 0 0 16px rgba(43,107,255,0)} }
+    .blog-coming-card h3 { font-size:1.8rem; font-weight:800; color:#0D1B2A; letter-spacing:-0.03em; margin:0 0 12px; }
+    .blog-coming-card p { font-size:15px; color:#6B7280; line-height:1.7; max-width:400px; margin:0 auto 32px; }
+    .blog-notify-form { display:flex; gap:10px; max-width:380px; width:100%; }
+    .blog-notify-form input {
+      flex:1; padding:12px 18px; border:2px solid #E8ECF8; border-radius:10px;
+      font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; color:#0D1B2A; outline:none;
+      transition:border-color 0.2s, box-shadow 0.2s;
+    }
+    .blog-notify-form input:focus { border-color:#2B6BFF; box-shadow:0 0 0 4px rgba(43,107,255,0.1); }
+    .blog-notify-form button {
+      padding:12px 22px; background:#2B6BFF; color:white; border:none; border-radius:10px;
+      font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer;
+      transition:background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .blog-notify-form button:hover { background:#1A4FCC; transform:translateY(-1px); }
+
+    /* ── DECORATIVE FLOATING ELEMENTS (side animations) ── */
+    .float-deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .float-ring {
+      width: 200px; height: 200px; border-radius: 50%;
+      border: 1.5px solid rgba(43,107,255,0.15);
+    }
+    .float-ring-sm {
+      width: 100px; height: 100px; border-radius: 50%;
+      border: 1px solid rgba(255,107,43,0.12);
+    }
+    .float-cross {
+      width: 20px; height: 20px;
+    }
+    .float-cross::before, .float-cross::after {
+      content: ''; position:absolute; background:rgba(43,107,255,0.25);
+    }
+    .float-cross::before { width:2px; height:100%; left:50%; transform:translateX(-50%); }
+    .float-cross::after { height:2px; width:100%; top:50%; transform:translateY(-50%); }
+
+    .sec-white, .sec-gray { position: relative; }
+
+    /* Animated section decorations */
+    .sec-deco {
+      position: absolute;
+      pointer-events: none;
+      animation: floatDeco 8s ease-in-out infinite;
+    }
+    .sec-deco.right { right:-60px; top:50%; transform:translateY(-50%); }
+    .sec-deco.left { left:-60px; top:40%; transform:translateY(-50%); }
+    .deco-circle { border-radius:50%; border: 2px solid rgba(43,107,255,0.1); }
+    @keyframes floatDeco { 0%,100%{transform:translateY(-50%) rotate(0deg)} 50%{transform:translateY(calc(-50% - 20px)) rotate(180deg)} }
+
+    /* Stat section */
+    .stats-section {
+      background: linear-gradient(135deg, #0D1B2A 0%, #162236 100%);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .stats-section::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(43,107,255,0.15), transparent 60%),
+                  radial-gradient(ellipse at 80% 50%, rgba(255,107,43,0.1), transparent 60%);
+    }
+    .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,0.06); border-radius:20px; overflow:hidden; position:relative; z-index:1; }
+    .stat-item {
+      background:#0D1B2A; padding:40px 32px; text-align:center;
+      transition:background 0.3s;
+    }
+    .stat-item:hover { background:#162236; }
+    .stat-item .n { font-size:3rem; font-weight:800; letter-spacing:-0.04em; color:white; display:block; margin-bottom:6px; }
+    .stat-item .n .accent-num { color:#2B6BFF; }
+    .stat-item .l { font-size:13px; color:rgba(255,255,255,0.45); font-weight:600; letter-spacing:0.02em; }
+
+    /* ── PROCESS STEPS (new section) ── */
+    .step-row { display:flex; align-items:flex-start; gap:28px; margin-bottom:40px; }
+    .step-row:last-child { margin-bottom:0; }
+    .step-num-wrap { flex-shrink:0; width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#2B6BFF,#1A4FCC); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; color:white; box-shadow:0 4px 20px rgba(43,107,255,0.4); position:relative; }
+    .step-num-wrap::after { content:''; position:absolute; bottom:-28px; left:50%; transform:translateX(-50%); width:2px; height:28px; background:linear-gradient(to bottom,rgba(43,107,255,0.4),transparent); }
+    .step-row:last-child .step-num-wrap::after { display:none; }
+    .step-body h4 { font-size:16px; font-weight:700; color:#0D1B2A; margin:0 0 6px; }
+    .step-body p { font-size:14px; color:#6B7280; line-height:1.6; margin:0; }
+
+    @media (max-width: 1024px) {
+      .help-cards-grid { grid-template-columns:1fr 1fr; }
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .photo-mosaic { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+      .photo-mosaic .p1 { grid-row:auto; grid-column:1/-1; height:200px; }
+      .photo-mosaic .p2,.photo-mosaic .p3,.photo-mosaic .p4,.photo-mosaic .p5 { height:160px; }
+      .award-photo-grid { grid-template-columns:1fr; }
+      .help-cards-grid { grid-template-columns:1fr; }
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+      .hero-stats-bar { gap:24px; }
+      .hero-stat { padding:0 20px; }
+      .blog-notify-form { flex-direction:column; }
+      .blog-coming-card { padding:48px 24px; }
+      .help-card { padding:28px 22px; }
+      .announce-bar { font-size:12px; padding:8px 16px; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns:1fr; }
+      .hero h1 { font-size:clamp(2.2rem,10vw,3.5rem); }
+      .hero-stat .n { font-size:1.4rem; }
+      .step-row { flex-direction:column; gap:12px; }
+      .step-num-wrap::after { display:none; }
+    }
+  </style>
+</head>
+<body>
+<div id="page-loader">
+  <div class="loader-logo-wrap">
+    <img src="brand_assets/glos logo.png" alt="" />
+    <div class="loader-logo-text"><div class="t">GŁOS</div><div class="b">PRZYSZŁOŚCI</div></div>
+  </div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  <span class="announce-dot"></span>
+  Rekrutacja na nowy rok trwa! <a href="dolacz.html">Dołącz do nas →</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="inner">
+    <a href="index.html" class="nav-logo">
+      <img src="brand_assets/glos logo.png" alt="Głos Przyszłości" style="height:36px;" />
+      <div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active nav-underline">Strona główna</a>
+      <a href="o-nas.html" class="nav-underline">O nas</a>
+      <a href="misja.html" class="nav-underline">Misja</a>
+      <a href="projekty.html" class="nav-underline">Projekty</a>
+      <a href="demokracja.html" class="nav-underline">Demokracja</a>
+      <a href="dolacz.html" class="nav-underline">Dołącz</a>
+      <a href="blog.html" class="nav-underline">Blog</a>
+      <a href="kontakt.html" class="nav-cta">Kontakt</a>
+    </div>
+    <button id="hamburger" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+  <div id="mobile-menu">
+    <a href="index.html">Strona główna</a>
+    <a href="o-nas.html">O nas</a>
+    <a href="misja.html">Misja</a>
+    <a href="projekty.html">Projekty</a>
+    <a href="demokracja.html">Demokracja</a>
+    <a href="dolacz.html">Dołącz do nas</a>
+    <a href="blog.html">Blog</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="hero-grid-base" id="heroGridBase"></div>
+  <div class="hero-grid-reveal" id="heroGridReveal"></div>
+  <div class="hero-sphere hero-sphere-orange"></div>
+  <div class="hero-sphere hero-sphere-blue"></div>
+  <div class="hero-sphere hero-sphere-primary"></div>
+  <!-- Floating particles -->
+  <div class="hero-particle hp1"></div>
+  <div class="hero-particle hp2"></div>
+  <div class="hero-particle hp3"></div>
+  <div class="hero-particle hp4"></div>
+  <div class="hero-particle hp5"></div>
+  <div class="hero-particle hp6"></div>
+
+  <div class="hero-content">
+    <div class="hero-award-row">
+      <div class="hero-pill hero-pill-blue"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Złoty Wilk 2022/23</div>
+      <div class="hero-pill hero-pill-blue"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Złoty Wilk 2023/24</div>
+      <div class="hero-pill hero-pill-gold">Zwolnieni z Teorii</div>
+    </div>
+    <h1>Twój głos<br />ma <span class="accent">znaczenie.</span></h1>
+    <p class="hero-sub">Budujemy pokolenie świadomych obywateli. Edukujemy, aktywizujemy i wspieramy młodych Polaków w działaniu.</p>
+    <div class="hero-btns">
+      <a href="dolacz.html" class="btn btn-blue">Dołącz do nas</a>
+      <a href="o-nas.html" class="btn btn-ghost">Kim jesteśmy</a>
+    </div>
+    <div class="hero-stats-bar">
+      <div class="hero-stat"><span class="n">2×</span><span class="l">Złoty Wilk</span></div>
+      <div class="hero-stat"><span class="n">5</span><span class="l">obszarów działania</span></div>
+      <div class="hero-stat"><span class="n">100+</span><span class="l">warsztatów</span></div>
+      <div class="hero-stat"><span class="n" style="font-size:1.3rem; white-space:nowrap;">Ogólnopolski</span><span class="l">zasięg</span></div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Przewiń
+  </div>
+</section>
+
+<!-- ── PHOTO MOSAIC ── -->
+<section class="sec sec-white reveal">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:44px;">
+      <span class="label">Nasze działania</span>
+      <h2 class="section-title">Robimy to naprawdę</h2>
+      <p class="section-sub" style="margin:0 auto; text-align:center;">Zdjęcia z naszych wydarzeń, wizyt i akcji w całej Polsce.</p>
+    </div>
+    <div class="photo-mosaic">
+      <div class="photo-tile p1"><img src="brand_assets/dzialania1.jpg" alt="Działania" /></div>
+      <div class="photo-tile p2"><img src="brand_assets/Akcja.jpg" alt="Akcja" /></div>
+      <div class="photo-tile p3"><img src="brand_assets/Sejm.jpg" alt="Sejm" /></div>
+      <div class="photo-tile p4"><img src="brand_assets/Senat.jpg" alt="Senat" /></div>
+      <div class="photo-tile p5"><img src="brand_assets/Akcja2.jpg" alt="Akcja" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<section class="stats-section reveal">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal reveal-delay-1">
+        <span class="n">2<span class="accent-num">×</span></span>
+        <span class="l">Złoty Wilk</span>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <span class="n">100<span class="accent-num">+</span></span>
+        <span class="l">Warsztatów i wydarzeń</span>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <span class="n">5</span>
+        <span class="l">Obszarów działania</span>
+      </div>
+      <div class="stat-item reveal" style="transition-delay:0.4s">
+        <span class="n" style="font-size:2rem;">PL</span>
+        <span class="l">Ogólnopolski zasięg</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CZYM SIĘ ZAJMUJEMY ── -->
+<section class="sec sec-gray reveal" style="overflow:hidden;">
+  <!-- Decorative ring right -->
+  <div class="sec-deco right" style="top:50%;">
+    <div class="deco-circle" style="width:300px;height:300px;"></div>
+  </div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center;">
+      <div>
+        <span class="label">O nas</span>
+        <h2 class="section-title" style="margin-bottom:20px;">Świadomy obywatel<br/>zmienia rzeczywistość</h2>
+        <p style="color:#6B7280; line-height:1.8; font-size:16px; margin-bottom:32px;">Jesteśmy społecznością młodych Polaków, którzy wierzą, że demokracja to nie tylko wybory — to codzienne wybory i postawy. Edukujemy, aktywizujemy i inspirujemy.</p>
+
+        <!-- Steps -->
+        <div style="margin-bottom:36px;">
+          <div class="step-row">
+            <div class="step-num-wrap">1</div>
+            <div class="step-body"><h4>Warsztaty i debaty o demokracji</h4><p>Organizujemy praktyczne zajęcia w szkołach i na uczelniach.</p></div>
+          </div>
+          <div class="step-row">
+            <div class="step-num-wrap">2</div>
+            <div class="step-body"><h4>Programy społeczne i lokalne inicjatywy</h4><p>Działamy tam, gdzie jest potrzeba — lokalnie i ogólnopolsko.</p></div>
+          </div>
+          <div class="step-row">
+            <div class="step-num-wrap">3</div>
+            <div class="step-body"><h4>Wizyty w Sejmie, Senacie i instytucjach</h4><p>Pokazujemy jak działa państwo od środka.</p></div>
+          </div>
+        </div>
+        <a href="o-nas.html" class="btn btn-blue">Poznaj naszą historię →</a>
+      </div>
+      <div style="position:relative;">
+        <img src="brand_assets/Final2.jpg" alt="Głos Przyszłości" style="width:100%; border-radius:20px; object-fit:cover; height:440px; display:block; box-shadow:0 24px 60px rgba(13,27,42,0.2);" />
+        <div style="position:absolute; bottom:-20px; right:-16px; background:white; border-radius:16px; padding:20px 24px; box-shadow:0 8px 32px rgba(13,27,42,0.14);">
+          <div style="font-size:2rem; font-weight:800; color:#2B6BFF; letter-spacing:-0.04em;">2×</div>
+          <div style="font-size:13px; color:#6B7280; font-weight:600; line-height:1.4;">Złoty Wilk<br/>Zwolnieni z Teorii</div>
+        </div>
+        <!-- Decorative floating dot grid -->
+        <div style="position:absolute; top:-20px; left:-20px; width:80px; height:80px; opacity:0.4; display:grid; grid-template-columns:repeat(4,1fr); gap:6px;">
+          <div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div>
+          <div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#FF6B2B;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div>
+          <div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#FF6B2B;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div>
+          <div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div><div style="width:5px;height:5px;background:#2B6BFF;border-radius:50%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AWARDS ── -->
+<section class="sec sec-dark noise reveal">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span class="label label-orange">Nasze sukcesy</span>
+      <h2 class="section-title light">Dwukrotnie nagrodzeni</h2>
+      <p class="section-sub light" style="margin:0 auto; text-align:center;">Najlepszy projekt społeczny w Polsce — dwa razy z rzędu.</p>
+    </div>
+    <div class="award-photo-grid">
+      <div class="award-block reveal reveal-delay-1">
+        <img src="brand_assets/Nagroda zloty wilk Glos.jpg" alt="Złoty Wilk 2022/23" />
+        <div class="award-block-overlay">
+          <div class="award-badge">EDYCJA 2022/2023</div>
+          <div class="award-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Złoty Wilk</div>
+        </div>
+      </div>
+      <div class="award-block reveal reveal-delay-2">
+        <img src="brand_assets/Nagroda Srebrny WIlk Glos.jpg" alt="Złoty Wilk 2023/24" />
+        <div class="award-block-overlay">
+          <div class="award-badge">EDYCJA 2023/2024</div>
+          <div class="award-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Złoty Wilk</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ODKRYJ WIĘCEJ ── -->
+<section class="sec sec-white reveal" style="overflow:hidden;">
+  <!-- Decorative left ring -->
+  <div class="sec-deco left">
+    <div class="deco-circle" style="width:250px;height:250px;"></div>
+  </div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div style="text-align:center; margin-bottom:52px;">
+      <span class="label">Odkryj więcej</span>
+      <h2 class="section-title">Co znajdziesz na stronie?</h2>
+      <p class="section-sub" style="margin:0 auto; text-align:center;">Wszystko, co chcesz wiedzieć o naszej organizacji.</p>
+    </div>
+    <div class="grid-3">
+      <a href="projekty.html" class="preview-card reveal reveal-delay-1">
+        <div class="preview-thumb"><img src="brand_assets/dzialania1.jpg" alt="Projekty" /></div>
+        <div class="preview-body">
+          <div class="preview-tag" style="color:#2B6BFF;">Projekty</div>
+          <h3>Wspieramy zmiany</h3>
+          <p>Projekty społeczne, edukacyjne i lokalne inicjatywy z realnym wpływem.</p>
+          <span class="preview-link" style="color:#2B6BFF;">Dowiedz się więcej <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+      <a href="demokracja.html" class="preview-card reveal reveal-delay-2">
+        <div class="preview-thumb"><img src="brand_assets/Sejm.jpg" alt="Demokracja" /></div>
+        <div class="preview-body">
+          <div class="preview-tag" style="color:#FF6B2B;">Demokracja</div>
+          <h3>Edukacja obywatelska</h3>
+          <p>Dowiedz się czym jest demokracja i dlaczego Twój głos ma znaczenie.</p>
+          <span class="preview-link" style="color:#FF6B2B;">Dowiedz się więcej <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+      <a href="dolacz.html" class="preview-card reveal reveal-delay-3">
+        <div class="preview-thumb"><img src="brand_assets/Akcja2.jpg" alt="Dołącz" /></div>
+        <div class="preview-body">
+          <div class="preview-tag" style="color:#2B6BFF;">Dołącz</div>
+          <h3>Działaj razem z nami</h3>
+          <p>Wolontariat, projekty, wydarzenia — znajdź swoją rolę w organizacji.</p>
+          <span class="preview-link" style="color:#2B6BFF;">Dołącz teraz <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── JAK MOŻESZ NAM POMÓC — REDESIGNED ── -->
+<section class="help-section reveal">
+  <div class="help-bg-blob1"></div>
+  <div class="help-bg-blob2"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="help-header">
+      <span class="label label-light">Wesprzyj nas</span>
+      <h2 class="section-title light">Jak możesz nam pomóc?</h2>
+      <p class="section-sub light" style="margin:0 auto; text-align:center;">Każdy z nas może wnieść coś wartościowego — wybierz sposób, który pasuje Tobie.</p>
+    </div>
+    <div class="help-cards-grid">
+      <!-- Card 1 -->
+      <div class="help-card featured reveal reveal-delay-1">
+        <span class="help-card-num">01</span>
+        <div class="help-icon-wrap blue">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#5B8FFF" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#5B8FFF" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#5B8FFF" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Dołącz jako wolontariusz</h3>
+        <p>Angażuj się bezpośrednio w nasze projekty, warsztaty i wydarzenia. Wspólnie budujemy świadomą Polskę.</p>
+        <a href="dolacz.html" class="help-card-cta blue">Dołącz teraz <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <!-- Card 2 -->
+      <div class="help-card reveal reveal-delay-2">
+        <span class="help-card-num">02</span>
+        <div class="help-icon-wrap orange">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#FF8C57" stroke-width="2" stroke-linecap="round"/><polyline points="9,22 9,12 15,12 15,22" stroke="#FF8C57" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Zaproponuj współpracę</h3>
+        <p>Jesteś szkołą, firmą lub organizacją? Nawiąż z nami partnerstwo i wspólnie realizujmy misję edukacyjną.</p>
+        <a href="kontakt.html" class="help-card-cta orange">Skontaktuj się <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <!-- Card 3 -->
+      <div class="help-card reveal reveal-delay-3">
+        <span class="help-card-num">03</span>
+        <div class="help-icon-wrap green">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="#4ADE80" stroke-width="2" stroke-linecap="round"/><polyline points="22 4 12 14.01 9 11.01" stroke="#4ADE80" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Udostępnij nasze działania</h3>
+        <p>Podziel się informacją o nas ze swoją siecią. Każde udostępnienie pomaga nam dotrzeć do kolejnych młodych Polaków.</p>
+        <a href="o-nas.html" class="help-card-cta outline">Poznaj nas <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-top-bar"></div>
+<div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo"><img src="brand_assets/glos logo.png" alt="" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a>
+      <p>Budujemy pokolenie świadomych obywateli poprzez edukację, dialog i zaangażowanie społeczne.</p>
+      <span class="footer-award"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Dwukrotny Złoty Wilk</span>
+    </div>
+    <div class="footer-col"><div class="footer-col-title">Strony</div><a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a></div>
+    <div class="footer-col"><div class="footer-col-title">Działaj</div><a href="dolacz.html">Dołącz do nas</a><a href="kontakt.html">Kontakt</a><a href="#">Polityka prywatności</a><a href="#">RODO</a></div>
+    <div class="footer-col"><div class="footer-col-title">Kontakt</div><a href="mailto:kontakt@glosprzyszlosci.pl">kontakt@glosprzyszlosci.pl</a><a href="http://glosprzyszlosci.pl">glosprzyszlosci.pl</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Głos Przyszłości. Wszelkie prawa zastrzeżone.</span><div class="footer-bottom-links"><a href="#">Polityka prywatności</a><a href="#">RODO</a><a href="kontakt.html">Kontakt</a></div></div>
+</div>
+</footer>
+
+<script>
+  // ── Nav hamburger ──
+  const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),s1=document.getElementById('h1'),s2=document.getElementById('h2'),s3=document.getElementById('h3');
+  let open=false;
+  h.addEventListener('click',()=>{open=!open;open?m.classList.add('open'):m.classList.remove('open');s1.style.transform=open?'rotate(45deg) translate(4px,4px)':'';s2.style.opacity=open?'0':'';s3.style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';});
+  m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;m.classList.remove('open');s1.style.transform=s2.style.opacity=s3.style.transform='';}));
+
+  // ── Scroll reveal ──
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08}).observe(el);
+  });
+
+  // ── Hero: Grid Mouse Flashlight ──
+  (function(){
+    const hero=document.getElementById('hero');
+    const reveal=document.getElementById('heroGridReveal');
+    if(!hero||!reveal)return;
+    hero.addEventListener('mousemove',function(e){
+      const r=hero.getBoundingClientRect();
+      const x=e.clientX-r.left,y=e.clientY-r.top;
+      const mask=`radial-gradient(340px circle at ${x}px ${y}px, black 0%, transparent 100%)`;
+      reveal.style.webkitMaskImage=mask;
+      reveal.style.maskImage=mask;
+    });
+    hero.addEventListener('mouseleave',function(){
+      const mask=`radial-gradient(320px circle at 50% 40%, black 0%, transparent 100%)`;
+      reveal.style.webkitMaskImage=mask;
+      reveal.style.maskImage=mask;
+    });
+  })();
+
+  // ── Nav shrink on scroll ──
+  (function(){
+    const nav=document.getElementById('navbar');
+    window.addEventListener('scroll',()=>{
+      if(window.scrollY>60){nav.style.background='rgba(6,14,24,0.98)';}
+      else{nav.style.background='rgba(13,27,42,0.96)';}
+    },{passive:true});
+  })();
+
+  // ── Blog signup ──
+  function blogSignup(){
+    const input=document.getElementById('blogEmail');
+    if(!input.value||!input.value.includes('@')){input.style.borderColor='#FF6B2B';input.focus();return;}
+    const form=document.getElementById('blogForm');
+    form.innerHTML='<div style="display:flex;align-items:center;gap:10px;color:#22C55E;font-weight:700;font-size:15px;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zapisano! Powiadomimy Cię gdy blog zostanie uruchomiony.</div>';
+  }
+
+  // ── Staggered reveal for grids ──
+  document.querySelectorAll('.help-cards-grid > .help-card, .grid-3 > *, .award-photo-grid > *').forEach((el,i)=>{
+    el.style.transitionDelay=(i*0.12)+'s';
+  });
+</script>
+<script src="_cursor.js"></script>
+</body>
+</html>

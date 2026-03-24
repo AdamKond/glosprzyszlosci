@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog – Głos Przyszłości</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="_shared.css" />
+  <style>
+    /* ── COMING SOON HERO ── */
+    .blog-hero {
+      min-height: 100vh;
+      background: #0D1B2A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(43,107,255,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(255,107,43,0.12) 0%, transparent 55%);
+    }
+    /* Animated grid lines */
+    .blog-grid-bg {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.05;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,1) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    /* Floating rings */
+    .blog-ring {
+      position: absolute; border-radius: 50%; border: 1px solid rgba(43,107,255,0.12);
+      pointer-events: none;
+    }
+    .br1 { width:500px; height:500px; top:-100px; right:-150px; animation: rotateSlow 30s linear infinite; }
+    .br2 { width:300px; height:300px; bottom:-60px; left:-80px; animation: rotateSlow 20s linear infinite reverse; }
+    .br3 { width:180px; height:180px; top:15%; left:8%; border-color:rgba(255,107,43,0.1); animation: rotateSlow 15s linear infinite; }
+    @keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+    /* Floating particles */
+    .bp { position:absolute; border-radius:50%; pointer-events:none; }
+    .bp1 { width:6px; height:6px; background:rgba(43,107,255,0.7); top:25%; left:12%; animation:fp 8s ease-in-out infinite; }
+    .bp2 { width:4px; height:4px; background:rgba(255,107,43,0.6); top:40%; right:15%; animation:fp 10s ease-in-out infinite 1s; }
+    .bp3 { width:8px; height:8px; background:rgba(43,107,255,0.4); bottom:35%; left:20%; animation:fp 12s ease-in-out infinite 2s; }
+    .bp4 { width:5px; height:5px; background:rgba(255,255,255,0.15); top:65%; right:25%; animation:fp 7s ease-in-out infinite 0.5s; }
+    @keyframes fp { 0%,100%{transform:translateY(0) translateX(0)} 33%{transform:translateY(-18px) translateX(6px)} 66%{transform:translateY(-8px) translateX(-4px)} }
+
+    /* Content */
+    .blog-hero-content {
+      position: relative; z-index: 10;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      padding: 0 24px; max-width: 720px;
+    }
+    .coming-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,107,43,0.15); color: #FFB080;
+      border: 1px solid rgba(255,107,43,0.35);
+      padding: 8px 20px; border-radius: 100px;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 36px;
+      animation: fadeInDown 0.7s ease both;
+    }
+    .coming-badge-dot { width:8px; height:8px; border-radius:50%; background:#FF6B2B; animation:pulseDot 2s ease infinite; }
+    @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+
+    .blog-hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; color: white;
+      margin: 0 0 8px;
+      animation: fadeInUp 0.7s ease 0.15s both;
+    }
+    .blog-hero h1 .accent { color: #2B6BFF; }
+    .blog-hero-sub {
+      color: rgba(255,255,255,0.55);
+      font-size: 18px; line-height: 1.75; max-width: 460px;
+      margin: 16px auto 48px;
+      animation: fadeInUp 0.7s ease 0.3s both;
+    }
+
+    /* Countdown / status bar */
+    .status-bar {
+      display: flex; align-items: center; gap: 32px;
+      padding: 20px 36px; border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      margin-bottom: 48px;
+      flex-wrap: wrap; justify-content: center;
+      animation: fadeInUp 0.7s ease 0.45s both;
+    }
+    .status-item { display:flex; align-items:center; gap:10px; }
+    .status-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .status-dot.green { background:#22C55E; box-shadow:0 0 8px rgba(34,197,94,0.6); animation:pulseDot 2s infinite; }
+    .status-dot.orange { background:#FF6B2B; box-shadow:0 0 8px rgba(255,107,43,0.6); animation:pulseDot 2s infinite 0.5s; }
+    .status-dot.blue { background:#2B6BFF; box-shadow:0 0 8px rgba(43,107,255,0.6); animation:pulseDot 2s infinite 1s; }
+    .status-label { font-size:13px; font-weight:600; color:rgba(255,255,255,0.6); }
+    .status-val { font-size:13px; font-weight:700; color:white; }
+
+    /* Notify form */
+    .notify-wrap {
+      width: 100%; max-width: 440px;
+      animation: fadeInUp 0.7s ease 0.6s both;
+    }
+    .notify-label { font-size:13px; font-weight:600; color:rgba(255,255,255,0.45); margin-bottom:12px; letter-spacing:0.04em; }
+    .notify-form { display:flex; gap:10px; }
+    .notify-form input {
+      flex:1; padding:13px 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; color: white; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .notify-form input::placeholder { color:rgba(255,255,255,0.3); }
+    .notify-form input:focus { border-color:#2B6BFF; background:rgba(43,107,255,0.1); box-shadow:0 0 0 4px rgba(43,107,255,0.15); }
+    .notify-form button {
+      padding:13px 22px; background:#2B6BFF; color:white; border:none; border-radius:10px;
+      font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer;
+      transition:background 0.2s, transform 0.15s, box-shadow 0.2s;
+      white-space:nowrap;
+      box-shadow: 0 4px 20px rgba(43,107,255,0.4);
+    }
+    .notify-form button:hover { background:#1A4FCC; transform:translateY(-2px); box-shadow:0 8px 28px rgba(43,107,255,0.55); }
+
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── GHOST POSTS SECTION ── */
+    .ghost-section {
+      padding: 80px 0;
+      background: #F5F7FF;
+      position: relative;
+      overflow: hidden;
+    }
+    .ghost-header { text-align:center; margin-bottom:48px; }
+    .ghost-posts-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .ghost-post {
+      background: white; border-radius: 20px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(13,27,42,0.06);
+      position: relative;
+    }
+    .ghost-post::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(245,247,255,0.7);
+      backdrop-filter: blur(3px);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ghost-post-lock {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      z-index: 10;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(13,27,42,0.08);
+      border: 1.5px solid rgba(13,27,42,0.12);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ghost-thumb { height: 160px; }
+    .ghost-thumb-fill { width:100%; height:100%; }
+    .ghost-body { padding: 20px; }
+    .ghost-tag { height:12px; border-radius:6px; margin-bottom:10px; }
+    .ghost-title-line { height:14px; border-radius:6px; margin-bottom:6px; }
+    .ghost-title-line2 { height:14px; border-radius:6px; width:75%; margin-bottom:14px; }
+    .ghost-text-line { height:10px; border-radius:5px; margin-bottom:6px; }
+    .ghost-text-line2 { height:10px; border-radius:5px; width:60%; margin-bottom:18px; }
+    .ghost-meta { display:flex; align-items:center; gap:10px; }
+    .ghost-avatar { width:28px; height:28px; border-radius:50%; }
+    .ghost-meta-text { display:flex; flex-direction:column; gap:4px; flex:1; }
+    .ghost-meta-l1 { height:8px; border-radius:4px; width:80px; }
+    .ghost-meta-l2 { height:8px; border-radius:4px; width:60px; }
+
+    /* Color variants */
+    .gp-blue .ghost-thumb-fill { background:linear-gradient(135deg,#DBEAFE,#93C5FD); }
+    .gp-blue .ghost-tag { background:#DBEAFE; width:60px; }
+    .gp-blue .ghost-title-line,.gp-blue .ghost-title-line2 { background:#CBD5E1; }
+    .gp-blue .ghost-text-line,.gp-blue .ghost-text-line2 { background:#E8ECF8; }
+    .gp-blue .ghost-avatar { background:#BFDBFE; }
+    .gp-blue .ghost-meta-l1,.gp-blue .ghost-meta-l2 { background:#E8ECF8; }
+
+    .gp-orange .ghost-thumb-fill { background:linear-gradient(135deg,#FEF3C7,#FDE68A); }
+    .gp-orange .ghost-tag { background:#FEF3C7; width:72px; }
+    .gp-orange .ghost-title-line,.gp-orange .ghost-title-line2 { background:#CBD5E1; }
+    .gp-orange .ghost-text-line,.gp-orange .ghost-text-line2 { background:#E8ECF8; }
+    .gp-orange .ghost-avatar { background:#FDE68A; }
+    .gp-orange .ghost-meta-l1,.gp-orange .ghost-meta-l2 { background:#E8ECF8; }
+
+    .gp-green .ghost-thumb-fill { background:linear-gradient(135deg,#D1FAE5,#6EE7B7); }
+    .gp-green .ghost-tag { background:#D1FAE5; width:50px; }
+    .gp-green .ghost-title-line,.gp-green .ghost-title-line2 { background:#CBD5E1; }
+    .gp-green .ghost-text-line,.gp-green .ghost-text-line2 { background:#E8ECF8; }
+    .gp-green .ghost-avatar { background:#6EE7B7; }
+    .gp-green .ghost-meta-l1,.gp-green .ghost-meta-l2 { background:#E8ECF8; }
+
+    /* Categories preview */
+    .category-chips { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:40px; }
+    .category-chip {
+      padding: 8px 18px; border-radius: 100px;
+      background: white; border: 1.5px solid #E8ECF8;
+      font-size: 13px; font-weight: 600; color: #6B7280;
+      transition: border-color 0.2s, color 0.2s;
+      cursor: default;
+    }
+    .category-chip:hover { border-color: #2B6BFF; color: #2B6BFF; }
+
+    @media(max-width:768px) {
+      .ghost-posts-grid { grid-template-columns:1fr; }
+      .status-bar { gap:20px; padding:16px 20px; }
+      .notify-form { flex-direction:column; }
+      .blog-hero h1 { font-size:clamp(2.2rem,10vw,3.5rem); }
+    }
+  </style>
+</head>
+<body>
+<div id="page-loader">
+  <div class="loader-logo-wrap">
+    <img src="brand_assets/glos logo.png" alt="" />
+    <div class="loader-logo-text"><div class="t">GŁOS</div><div class="b">PRZYSZŁOŚCI</div></div>
+  </div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<nav id="navbar">
+  <div class="inner">
+    <a href="index.html" class="nav-logo"><img src="brand_assets/glos logo.png" alt="Głos Przyszłości" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a>
+    <div class="nav-links">
+      <a href="index.html">Strona główna</a>
+      <a href="o-nas.html">O nas</a>
+      <a href="misja.html">Misja</a>
+      <a href="projekty.html">Projekty</a>
+      <a href="demokracja.html">Demokracja</a>
+      <a href="dolacz.html">Dołącz</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="kontakt.html" class="nav-cta">Kontakt</a>
+    </div>
+    <button id="hamburger" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+  <div id="mobile-menu">
+    <a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a><a href="dolacz.html">Dołącz do nas</a><a href="blog.html">Blog</a><a href="kontakt.html">Kontakt</a>
+  </div>
+</nav>
+
+<!-- ── COMING SOON HERO ── -->
+<section class="blog-hero">
+  <div class="blog-grid-bg"></div>
+  <div class="blog-ring br1"></div>
+  <div class="blog-ring br2"></div>
+  <div class="blog-ring br3"></div>
+  <div class="bp bp1"></div>
+  <div class="bp bp2"></div>
+  <div class="bp bp3"></div>
+  <div class="bp bp4"></div>
+
+  <div class="blog-hero-content">
+    <div class="coming-badge">
+      <span class="coming-badge-dot"></span>
+      W przygotowaniu
+    </div>
+    <h1>Blog <span class="accent">Głosu</span><br/>Przyszłości</h1>
+    <p class="blog-hero-sub">Artykuły, analizy i opinie od młodych aktywistów obywatelskich. Wkrótce tutaj!</p>
+
+    <div class="status-bar">
+      <div class="status-item">
+        <span class="status-dot green"></span>
+        <span class="status-label">Projekt:</span>
+        <span class="status-val">Aktywny</span>
+      </div>
+      <div class="status-item">
+        <span class="status-dot orange"></span>
+        <span class="status-label">Treści:</span>
+        <span class="status-val">W pisaniu</span>
+      </div>
+      <div class="status-item">
+        <span class="status-dot blue"></span>
+        <span class="status-label">Premiera:</span>
+        <span class="status-val">Wkrótce</span>
+      </div>
+    </div>
+
+    <div class="notify-wrap">
+      <p class="notify-label">Powiadom mnie gdy blog zostanie uruchomiony</p>
+      <div class="notify-form" id="notifyForm">
+        <input type="email" id="notifyEmail" placeholder="Twój adres e-mail" />
+        <button type="button" onclick="handleNotify()">Zapisz się</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GHOST POSTS (preview) ── -->
+<section class="ghost-section reveal">
+  <div class="container">
+    <div class="ghost-header">
+      <span class="label">Nadchodzące artykuły</span>
+      <h2 class="section-title">Nad czym pracujemy?</h2>
+      <p class="section-sub" style="margin:0 auto; text-align:center;">Oto tematyki, które wkrótce pojawią się na blogu.</p>
+    </div>
+
+    <div class="ghost-posts-grid">
+      <!-- Ghost post 1 -->
+      <div class="ghost-post gp-blue reveal reveal-delay-1">
+        <div class="ghost-post-lock">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#0D1B2A" stroke-width="2"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#0D1B2A" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="ghost-thumb"><div class="ghost-thumb-fill"></div></div>
+        <div class="ghost-body">
+          <div class="ghost-tag"></div>
+          <div class="ghost-title-line"></div>
+          <div class="ghost-title-line2"></div>
+          <div class="ghost-text-line"></div>
+          <div class="ghost-text-line2"></div>
+          <div class="ghost-meta">
+            <div class="ghost-avatar"></div>
+            <div class="ghost-meta-text">
+              <div class="ghost-meta-l1"></div>
+              <div class="ghost-meta-l2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ghost post 2 -->
+      <div class="ghost-post gp-orange reveal reveal-delay-2">
+        <div class="ghost-post-lock">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#0D1B2A" stroke-width="2"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#0D1B2A" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="ghost-thumb"><div class="ghost-thumb-fill"></div></div>
+        <div class="ghost-body">
+          <div class="ghost-tag"></div>
+          <div class="ghost-title-line"></div>
+          <div class="ghost-title-line2"></div>
+          <div class="ghost-text-line"></div>
+          <div class="ghost-text-line2"></div>
+          <div class="ghost-meta">
+            <div class="ghost-avatar"></div>
+            <div class="ghost-meta-text">
+              <div class="ghost-meta-l1"></div>
+              <div class="ghost-meta-l2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ghost post 3 -->
+      <div class="ghost-post gp-green reveal reveal-delay-3">
+        <div class="ghost-post-lock">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#0D1B2A" stroke-width="2"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#0D1B2A" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="ghost-thumb"><div class="ghost-thumb-fill"></div></div>
+        <div class="ghost-body">
+          <div class="ghost-tag"></div>
+          <div class="ghost-title-line"></div>
+          <div class="ghost-title-line2"></div>
+          <div class="ghost-text-line"></div>
+          <div class="ghost-text-line2"></div>
+          <div class="ghost-meta">
+            <div class="ghost-avatar"></div>
+            <div class="ghost-meta-text">
+              <div class="ghost-meta-l1"></div>
+              <div class="ghost-meta-l2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category chips -->
+    <div class="category-chips">
+      <div class="category-chip">Demokracja</div>
+      <div class="category-chip">Edukacja obywatelska</div>
+      <div class="category-chip">Aktywizm</div>
+      <div class="category-chip">Prawa młodzieży</div>
+      <div class="category-chip">Polska polityka</div>
+      <div class="category-chip">Inicjatywy lokalne</div>
+      <div class="category-chip">Wywiady</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-top-bar"></div>
+<div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="index.html" class="nav-logo"><img src="brand_assets/glos logo.png" alt="" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a><p>Budujemy pokolenie świadomych obywateli poprzez edukację, dialog i zaangażowanie społeczne.</p><span class="footer-award"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Dwukrotny Złoty Wilk</span></div>
+    <div class="footer-col"><div class="footer-col-title">Strony</div><a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a><a href="blog.html">Blog</a></div>
+    <div class="footer-col"><div class="footer-col-title">Działaj</div><a href="dolacz.html">Dołącz do nas</a><a href="kontakt.html">Kontakt</a><a href="#">Polityka prywatności</a><a href="#">RODO</a></div>
+    <div class="footer-col"><div class="footer-col-title">Kontakt</div><a href="mailto:kontakt@glosprzyszlosci.pl">kontakt@glosprzyszlosci.pl</a><a href="http://glosprzyszlosci.pl">glosprzyszlosci.pl</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Głos Przyszłości. Wszelkie prawa zastrzeżone.</span><div class="footer-bottom-links"><a href="#">Polityka prywatności</a><a href="#">RODO</a><a href="kontakt.html">Kontakt</a></div></div>
+</div>
+</footer>
+
+<script>
+  const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),s1=document.getElementById('h1'),s2=document.getElementById('h2'),s3=document.getElementById('h3');let open=false;
+  h.addEventListener('click',()=>{open=!open;open?m.classList.add('open'):m.classList.remove('open');s1.style.transform=open?'rotate(45deg) translate(4px,4px)':'';s2.style.opacity=open?'0':'';s3.style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';});
+  m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;m.classList.remove('open');s1.style.transform=s2.style.opacity=s3.style.transform='';}));
+  document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08}).observe(el);});
+
+  function handleNotify(){
+    const input=document.getElementById('notifyEmail');
+    if(!input.value||!input.value.includes('@')){input.style.borderColor='#FF6B2B';input.focus();return;}
+    document.getElementById('notifyForm').innerHTML='<div style="display:flex;align-items:center;gap:10px;color:#22C55E;font-weight:700;font-size:15px;padding:13px 18px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zapisano! Powiadomimy Cię o premierze bloga.</div>';
+  }
+</script>
+<script src="_cursor.js"></script>
+</body>
+</html>

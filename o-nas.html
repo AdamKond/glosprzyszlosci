@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O nas – Głos Przyszłości</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="_shared.css" />
+  <style>
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before { content:''; position:absolute; left:6px; top:8px; bottom:8px; width:2px; background: linear-gradient(to bottom, #2B6BFF, rgba(43,107,255,0.1)); }
+    .tl-item { position: relative; margin-bottom: 36px; }
+    .tl-dot { position:absolute; left:-32px; top:4px; width:14px; height:14px; border-radius:50%; background:#2B6BFF; box-shadow:0 0 0 3px rgba(43,107,255,0.2); }
+    .tl-year { font-size:12px; font-weight:700; color:#2B6BFF; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; }
+    .tl-title { font-size:16px; font-weight:700; color:#0D1B2A; margin-bottom:4px; }
+    .tl-desc { font-size:14px; color:#6B7280; line-height:1.6; }
+    .role-card { background:white; border-radius:18px; padding:28px; text-align:center; box-shadow:0 4px 20px rgba(13,27,42,0.07); transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .role-card:hover { transform:translateY(-6px); }
+    .role-avatar { width:72px; height:72px; border-radius:50%; margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:800; color:white; }
+    .val-card { padding:28px 24px; border-radius:18px; background:white; box-shadow:0 2px 16px rgba(13,27,42,0.06); }
+  </style>
+</head>
+<body>
+<div id="page-loader">
+  <div class="loader-logo-wrap">
+    <img src="brand_assets/glos logo.png" alt="" />
+    <div class="loader-logo-text"><div class="t">GŁOS</div><div class="b">PRZYSZŁOŚCI</div></div>
+  </div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+<nav id="navbar">
+  <div class="inner">
+    <a href="index.html" class="nav-logo"><img src="brand_assets/glos logo.png" alt="Głos Przyszłości" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a>
+    <div class="nav-links">
+      <a href="index.html">Strona główna</a>
+      <a href="o-nas.html" class="active">O nas</a>
+      <a href="misja.html">Misja</a>
+      <a href="projekty.html">Projekty</a>
+      <a href="demokracja.html">Demokracja</a>
+      <a href="dolacz.html">Dołącz</a>
+      <a href="blog.html">Blog</a>
+      <a href="kontakt.html" class="nav-cta">Kontakt</a>
+    </div>
+    <button id="hamburger" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+  <div id="mobile-menu">
+    <a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a><a href="dolacz.html">Dołącz do nas</a><a href="blog.html">Blog</a><a href="kontakt.html">Kontakt</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="badge"><svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#5B8FFF" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#5B8FFF" stroke-width="2"/></svg> Kim jesteśmy</div>
+    <h1>Jesteśmy <span>Głosem</span><br />Przyszłości!</h1>
+    <p>Społeczność młodych ludzi i dorosłych wspólnie działających na rzecz świadomości demokratycznej i obywatelskiej polskiej młodzieży.</p>
+  </div>
+</div>
+
+<!-- KIM JESTEŚMY -->
+<section class="sec sec-white reveal">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <div>
+        <span class="label">O organizacji</span>
+        <h2 class="section-title" style="margin-bottom:20px;">Dlaczego powstaliśmy?</h2>
+        <p style="color:#6B7280; line-height:1.8; font-size:16px; margin-bottom:32px;">Jesteśmy społecznością młodych Polaków, którzy wierzą, że świadomy obywatel zmienia rzeczywistość. Edukujemy, debatujemy i działamy — bo demokracja to nie tylko wybory.</p>
+        <a href="misja.html" class="btn btn-blue">Nasza misja →</a>
+      </div>
+      <div style="position:relative;">
+        <img src="brand_assets/Final3.jpg" alt="Głos Przyszłości" style="width:100%; border-radius:20px; object-fit:cover; height:380px; display:block;" />
+        <div style="position:absolute; bottom:-20px; left:-20px; background:white; border-radius:16px; padding:20px 24px; box-shadow:0 8px 32px rgba(13,27,42,0.12);">
+          <div style="font-size:2rem; font-weight:800; color:#2B6BFF; letter-spacing:-0.04em;">2×</div>
+          <div style="font-size:13px; color:#6B7280; font-weight:600; line-height:1.4;">Złoty Wilk<br/>Zwolnieni z Teorii</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIA / TIMELINE -->
+<section class="sec sec-gray reveal">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start;">
+      <div>
+        <span class="label">Nasza historia</span>
+        <h2 class="section-title" style="margin-bottom:12px;">Jak to się zaczęło</h2>
+        <p style="color:#6B7280; line-height:1.75; margin-bottom:40px;">Od małego projektu do ogólnopolskiej społeczności.</p>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2022 / 2023</div><div class="tl-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF8C57" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px;"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Złoty Wilk – pierwsze wyróżnienie</div><div class="tl-desc">Projekt "Młodzi Głosem Przyszłości" zdobywa prestiżową nagrodę w ogólnopolskiej olimpiadzie Zwolnieni z Teorii za kreatywność i wpływ społeczny.</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2023 / 2024</div><div class="tl-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF8C57" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px;"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Złoty Wilk – po raz drugi</div><div class="tl-desc">Po raz drugi wyróżnieni nagrodą za najlepszy projekt społeczny, potwierdzając determinację i zaangażowanie w zmianę społeczną.</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Dziś</div><div class="tl-title">Ogólnopolska społeczność</div><div class="tl-desc">Działamy w wielu miastach, prowadzimy warsztaty, debaty i programy społeczne. Stale się rozwijamy i zapraszamy nowych członków.</div></div>
+        </div>
+      </div>
+      <div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+          <div style="border-radius:14px; overflow:hidden; height:200px;"><img src="brand_assets/Nagroda zloty wilk Glos.jpg" alt="Złoty Wilk 2022/23" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+          <div style="border-radius:14px; overflow:hidden; height:200px;"><img src="brand_assets/Nagroda Srebrny WIlk Glos.jpg" alt="Złoty Wilk 2023/24" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        </div>
+        <div style="border-radius:14px; overflow:hidden; height:200px;"><img src="brand_assets/dzialania 7.jpg" alt="Działania" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-top-bar"></div>
+<div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="index.html" class="nav-logo"><img src="brand_assets/glos logo.png" alt="" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a><p>Budujemy pokolenie świadomych obywateli poprzez edukację, dialog i zaangażowanie społeczne.</p><span class="footer-award"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Dwukrotny Złoty Wilk</span></div>
+    <div class="footer-col"><div class="footer-col-title">Strony</div><a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a></div>
+    <div class="footer-col"><div class="footer-col-title">Działaj</div><a href="dolacz.html">Dołącz do nas</a><a href="blog.html">Blog</a><a href="kontakt.html">Kontakt</a><a href="#">Polityka prywatności</a><a href="#">RODO</a></div>
+    <div class="footer-col"><div class="footer-col-title">Kontakt</div><a href="mailto:kontakt@glosprzyszlosci.pl">kontakt@glosprzyszlosci.pl</a><a href="http://glosprzyszlosci.pl">glosprzyszlosci.pl</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Głos Przyszłości. Wszelkie prawa zastrzeżone.</span><div class="footer-bottom-links"><a href="#">Polityka prywatności</a><a href="#">RODO</a><a href="kontakt.html">Kontakt</a></div></div>
+</div>
+</footer>
+<script>
+  const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),s1=document.getElementById('h1'),s2=document.getElementById('h2'),s3=document.getElementById('h3');let open=false;
+  h.addEventListener('click',()=>{open=!open;open?m.classList.add('open'):m.classList.remove('open');s1.style.transform=open?'rotate(45deg) translate(4px,4px)':'';s2.style.opacity=open?'0':'';s3.style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';});
+  m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;m.classList.remove('open');s1.style.transform=s2.style.opacity=s3.style.transform='';}));
+  new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1}).observe?document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1}).observe(el);}):document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+</script>
+<script src="_cursor.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – Głos Przyszłości</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="_shared.css" />
+  <style>
+    .contact-info-item { display: flex; align-items: flex-start; gap: 16px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .contact-info-item:last-child { border-bottom: none; }
+    .contact-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(43,107,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .social-link { display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-decoration: none; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+    .social-link:hover { background: rgba(255,255,255,0.1); border-color: rgba(43,107,255,0.4); transform: translateX(4px); }
+    .faq-item { border-bottom: 1px solid #E8ECF8; }
+    .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; cursor: pointer; font-weight: 700; color: #0D1B2A; font-size: 15px; gap: 16px; }
+    .faq-q svg { flex-shrink: 0; transition: transform 0.3s; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-a p { padding: 0 0 20px; font-size: 14px; color: #6B7280; line-height: 1.75; margin: 0; }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); }
+    .faq-item.open .faq-a { max-height: 200px; }
+    #contact-success { display: none; text-align: center; padding: 48px 32px; }
+    #contact-success.show { display: block; }
+    #contact-form-wrap.hidden { display: none; }
+  </style>
+</head>
+<body>
+<div id="page-loader">
+  <div class="loader-logo-wrap">
+    <img src="brand_assets/glos logo.png" alt="" />
+    <div class="loader-logo-text"><div class="t">GŁOS</div><div class="b">PRZYSZŁOŚCI</div></div>
+  </div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+<nav id="navbar">
+  <div class="inner">
+    <a href="index.html" class="nav-logo"><img src="brand_assets/glos logo.png" alt="Głos Przyszłości" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a>
+    <div class="nav-links">
+      <a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a><a href="dolacz.html">Dołącz</a><a href="kontakt.html" class="nav-cta active">Kontakt</a>
+    </div>
+    <button id="hamburger" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+  <div id="mobile-menu"><a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a><a href="dolacz.html">Dołącz do nas</a><a href="blog.html">Blog</a><a href="kontakt.html">Kontakt</a></div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="badge">Jesteśmy tu dla Ciebie</div>
+    <h1>Skontaktuj się <span>z nami</span></h1>
+    <p>Masz pytanie, pomysł albo chcesz porozmawiać o współpracy? Napisz do nas — odpowiadamy w ciągu 48 godzin.</p>
+  </div>
+</div>
+
+<!-- FORMULARZ + INFO -->
+<section class="sec sec-white reveal">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:64px; align-items:start;">
+      <!-- FORM -->
+      <div>
+        <div id="contact-form-wrap" style="background:#F5F7FF; border-radius:24px; padding:48px;">
+          <h3 style="font-size:1.3rem; font-weight:800; color:#0D1B2A; margin:0 0 32px; letter-spacing:-0.02em;">Wyślij wiadomość</h3>
+          <form id="contact-form" novalidate>
+            <div class="grid-2" style="margin-bottom:20px;">
+              <div class="form-field" style="margin:0;">
+                <label class="form-label">Imię i nazwisko *</label>
+                <input type="text" class="form-input" id="cf-name" placeholder="np. Anna Kowalska" />
+                <div class="cf-err" style="display:none; color:#EF4444; font-size:13px; margin-top:4px;"></div>
+              </div>
+              <div class="form-field" style="margin:0;">
+                <label class="form-label">Adres e-mail *</label>
+                <input type="email" class="form-input" id="cf-email" placeholder="np. anna@example.com" />
+                <div class="cf-err" style="display:none; color:#EF4444; font-size:13px; margin-top:4px;"></div>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Temat wiadomości *</label>
+              <select class="form-input" id="cf-subject">
+                <option value="">-- Wybierz temat --</option>
+                <option value="dolacz">Chcę dołączyć do organizacji</option>
+                <option value="wspolpraca">Propozycja współpracy</option>
+                <option value="partnerstwo">Zostanie partnerem</option>
+                <option value="warsztaty">Zamówienie warsztatów</option>
+                <option value="media">Zapytanie medialne</option>
+                <option value="inne">Inne</option>
+              </select>
+              <div class="cf-err" style="display:none; color:#EF4444; font-size:13px; margin-top:4px;"></div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Wiadomość *</label>
+              <textarea class="form-input" id="cf-msg" rows="5" placeholder="Opisz temat swojej wiadomości..."></textarea>
+              <div class="cf-err" style="display:none; color:#EF4444; font-size:13px; margin-top:4px;"></div>
+            </div>
+            <button type="submit" class="btn btn-blue" style="width:100%; font-size:16px; padding:16px;">Wyślij wiadomość →</button>
+          </form>
+        </div>
+        <div id="contact-success">
+          <div style="width:72px; height:72px; border-radius:50%; background:rgba(16,185,129,0.12); display:flex; align-items:center; justify-content:center; margin:0 auto 24px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3 style="font-size:1.5rem; font-weight:800; color:#0D1B2A; margin:0 0 12px;">Wiadomość wysłana!</h3>
+          <p style="color:#6B7280; font-size:15px; line-height:1.7; max-width:380px; margin:0 auto;">Dziękujemy za kontakt. Odpiszemy na Twój adres e-mail w ciągu 48 godzin roboczych.</p>
+        </div>
+      </div>
+      <!-- INFO -->
+      <div>
+        <div style="background:#0D1B2A; border-radius:24px; padding:40px; margin-bottom:24px;">
+          <h3 style="color:white; font-size:1.1rem; font-weight:800; margin:0 0 24px; letter-spacing:-0.02em;">Dane kontaktowe</h3>
+          <div class="contact-info-item">
+            <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:4px;">E-mail</div>
+              <a href="mailto:kontakt@glosprzyszlosci.pl" style="color:white; font-weight:600; font-size:15px; text-decoration:none;">kontakt@glosprzyszlosci.pl</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <div>
+              <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:4px;">Strona internetowa</div>
+              <a href="http://glosprzyszlosci.pl" style="color:white; font-weight:600; font-size:15px; text-decoration:none;">glosprzyszlosci.pl</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div>
+              <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:4px;">Czas odpowiedzi</div>
+              <div style="color:white; font-weight:600; font-size:15px;">Do 48 godzin roboczych</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#0D1B2A; border-radius:24px; padding:40px;">
+          <h3 style="color:white; font-size:1.1rem; font-weight:800; margin:0 0 20px; letter-spacing:-0.02em;">Media społecznościowe</h3>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <a href="#" class="social-link">
+              <div style="width:32px; height:32px; border-radius:8px; background:#1877F2; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:white;">f</div>
+              <div><div style="font-weight:700; color:white; font-size:14px;">Facebook</div><div style="font-size:12px; color:rgba(255,255,255,0.45);">Głos Przyszłości</div></div>
+            </a>
+            <a href="#" class="social-link">
+              <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); display:flex; align-items:center; justify-content:center; font-size:14px; color:white;">📷</div>
+              <div><div style="font-weight:700; color:white; font-size:14px;">Instagram</div><div style="font-size:12px; color:rgba(255,255,255,0.45);">@glosprzyszlosci</div></div>
+            </a>
+            <a href="#" class="social-link">
+              <div style="width:32px; height:32px; border-radius:8px; background:#0A66C2; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:white;">in</div>
+              <div><div style="font-weight:700; color:white; font-size:14px;">LinkedIn</div><div style="font-size:12px; color:rgba(255,255,255,0.45);">Głos Przyszłości</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec sec-gray reveal">
+  <div class="container">
+    <div style="max-width:760px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:52px;">
+        <span class="label">FAQ</span>
+        <h2 class="section-title">Najczęstsze pytania</h2>
+      </div>
+      <div id="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">Czy mogę dołączyć do organizacji, jeśli nie mam żadnego doświadczenia?<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="faq-a"><p>Tak! Nie wymagamy żadnego konkretnego doświadczenia — szukamy przede wszystkim motywacji i chęci działania. Oferujemy szkolenia i mentoring, które pomogą Ci rozwinąć potrzebne umiejętności.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">W jakim wieku można dołączyć?<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="faq-a"><p>Nasza organizacja skupia głównie osoby w wieku 15–30 lat, ale jesteśmy otwarci dla każdego, kto podziela nasze wartości. Współpracujemy również z dorosłymi mentorami i ekspertami.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Czy działalność w organizacji jest płatna?<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="faq-a"><p>Działalność w organizacji jest dobrowolna i nieodpłatna. Wszystkie nasze projekty i warsztaty dla uczestników są bezpłatne. Koszty działalności pokrywamy z grantów i sponsorów.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Ile czasu tygodniowo wymaga zaangażowanie?<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="faq-a"><p>To zależy od roli i projektu — od kilku godzin tygodniowo do bardziej intensywnego zaangażowania w czasie eventów. Staramy się być elastyczni i dostosować do możliwości naszych członków.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Czy prowadzicie warsztaty poza Warszawą?<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="faq-a"><p>Tak! Prowadzimy warsztaty i projekty w całej Polsce. Jeśli chcesz zaprosić nas do swojej szkoły lub miasta, skontaktuj się z nami przez formularz powyżej.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Jak mogę zostać partnerem organizacji?<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="faq-a"><p>Odwiedź stronę Partnerzy lub skontaktuj się z nami bezpośrednio. Oferujemy różne formy współpracy — od patronatu nad projektem po długoterminowe partnerstwo strategiczne.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="footer-top-bar"></div><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo"><img src="brand_assets/glos logo.png" alt="" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a><p>Budujemy pokolenie świadomych obywateli poprzez edukację, dialog i zaangażowanie społeczne.</p><span class="footer-award"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Dwukrotny Złoty Wilk</span></div><div class="footer-col"><div class="footer-col-title">Strony</div><a href="index.html">Strona główna</a><a href="o-nas.html">O nas</a><a href="misja.html">Misja</a><a href="projekty.html">Projekty</a><a href="demokracja.html">Demokracja</a></div><div class="footer-col"><div class="footer-col-title">Działaj</div><a href="dolacz.html">Dołącz do nas</a><a href="blog.html">Blog</a><a href="kontakt.html">Kontakt</a><a href="#">Polityka prywatności</a><a href="#">RODO</a></div><div class="footer-col"><div class="footer-col-title">Kontakt</div><a href="mailto:kontakt@glosprzyszlosci.pl">kontakt@glosprzyszlosci.pl</a><a href="http://glosprzyszlosci.pl">glosprzyszlosci.pl</a></div></div><div class="footer-bottom"><span>© 2025 Głos Przyszłości. Wszelkie prawa zastrzeżone.</span><div class="footer-bottom-links"><a href="#">Polityka prywatności</a><a href="#">RODO</a><a href="kontakt.html">Kontakt</a></div></div></div></footer>
+<script>
+const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),s1=document.getElementById('h1'),s2=document.getElementById('h2'),s3=document.getElementById('h3');let open=false;h.addEventListener('click',()=>{open=!open;open?m.classList.add('open'):m.classList.remove('open');s1.style.transform=open?'rotate(45deg) translate(4px,4px)':'';s2.style.opacity=open?'0':'';s3.style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;m.classList.remove('open');s1.style.transform=s2.style.opacity=s3.style.transform='';}));
+document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1}).observe(el);});
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item=>{item.querySelector('.faq-q').addEventListener('click',()=>{const wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!wasOpen)item.classList.add('open');});});
+// Contact form
+document.getElementById('contact-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  const fields=[
+    {id:'cf-name',msg:'Podaj imię i nazwisko'},
+    {id:'cf-email',msg:'Podaj adres e-mail'},
+    {id:'cf-subject',msg:'Wybierz temat'},
+    {id:'cf-msg',msg:'Napisz wiadomość'}
+  ];
+  let valid=true;
+  fields.forEach(f=>{
+    const el=document.getElementById(f.id);
+    const err=el.nextElementSibling;
+    if(!el.value.trim()||(f.id==='cf-email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value))){
+      el.style.borderColor='#EF4444';
+      err.style.display='block';
+      err.textContent=f.id==='cf-email'&&el.value.trim()?'Podaj poprawny adres e-mail':f.msg;
+      valid=false;
+    } else {
+      el.style.borderColor='';
+      err.style.display='none';
+    }
+  });
+  if(valid){
+    document.getElementById('contact-form-wrap').classList.add('hidden');
+    document.getElementById('contact-success').classList.add('show');
+  }
+});
+</script>
+<script src="_cursor.js"></script>
+</body></html>
