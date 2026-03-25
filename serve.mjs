@@ -23,21 +23,43 @@ const MIME = {
   '.txt':  'text/plain',
 };
 
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
+  'Content-Security-Policy':
+    "default-src 'self'; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+    "font-src 'self' https://fonts.gstatic.com; " +
+    "script-src 'self' 'unsafe-inline'; " +
+    "img-src 'self' data: https://placehold.co; " +
+    "connect-src 'none'; " +
+    "frame-ancestors 'none';",
+};
+
 const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
   if (urlPath === '/') urlPath = '/index.html';
 
-  const filePath = path.join(__dirname, decodeURIComponent(urlPath));
+  // Prevent path traversal: resolve and ensure it stays within __dirname
+  const filePath = path.resolve(__dirname, '.' + path.normalize('/' + decodeURIComponent(urlPath)));
+  if (!filePath.startsWith(__dirname + path.sep) && filePath !== __dirname) {
+    res.writeHead(403, { 'Content-Type': 'text/plain' });
+    res.end('403 Forbidden');
+    return;
+  }
+
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME[ext] || 'application/octet-stream';
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
       if (err.code === 'ENOENT') {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.writeHead(404, { 'Content-Type': 'text/plain', ...SECURITY_HEADERS });
         res.end('404 Not Found');
       } else {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.writeHead(500, { 'Content-Type': 'text/plain', ...SECURITY_HEADERS });
         res.end('500 Server Error');
       }
       return;
@@ -45,6 +67,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, {
       'Content-Type': contentType,
       'Cache-Control': 'no-cache',
+      ...SECURITY_HEADERS,
     });
     res.end(data);
   });
