@@ -786,6 +786,13 @@
     var nav = document.getElementById('navbar');
     if(bar) bar.classList.add('intro-done');
     if(nav) nav.classList.add('intro-done');
+    // After the slide-in finishes (~900ms), remove intro-done so its
+    // opacity/transform transition no longer applies — stops the nav
+    // background from inheriting the slow 0.8s transition on scroll.
+    setTimeout(function(){
+      if(bar) bar.classList.remove('intro-done');
+      if(nav) nav.classList.remove('intro-done');
+    }, 950);
   }, 3000);
 })();
 </script>

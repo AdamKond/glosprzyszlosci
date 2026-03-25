@@ -50,11 +50,9 @@
   var nav = document.getElementById('navbar');
   if (!nav) return;
 
-  // Darken background on scroll
+  // Darken background on scroll via class (avoids inline style / transition conflicts)
   window.addEventListener('scroll', function () {
-    nav.style.background = window.scrollY > 20
-      ? 'rgba(7,14,26,0.97)'
-      : 'rgba(7,14,26,0.92)';
+    nav.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
   // Highlight the nav link matching the visible section
