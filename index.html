@@ -94,36 +94,50 @@
       position:relative; z-index:10; width:100%;
       display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 32px;
     }
-    .hero-award-row { display:flex; gap:10px; margin-bottom:32px; flex-wrap:wrap; justify-content:center; animation:fadeInDown 0.8s ease both; }
+    /* ── CINEMATIC INTRO ── */
+    /* Nav + bar start hidden above viewport */
+    .announce-bar { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+    #navbar       { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+    /* Reveal class added by JS after 3s */
+    .announce-bar.intro-done, #navbar.intro-done {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+      transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+    }
+    /* Stagger navbar slightly after bar */
+    #navbar.intro-done { transition-delay: 0.08s; }
+
+    /* Hero elements: animate in after loader fades (~1.5s) */
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeInUp   { from{opacity:0;transform:translateY(22px)}  to{opacity:1;transform:translateY(0)} }
+
+    .hero-award-row { display:flex; gap:10px; margin-bottom:32px; flex-wrap:wrap; justify-content:center; animation:fadeInDown 0.7s cubic-bezier(0.22,1,0.36,1) 1.5s both; }
     .hero-pill { display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:100px; font-size:13px; font-weight:700; backdrop-filter:blur(10px); }
     .hero-pill-gold { background:rgba(255,107,43,0.2); color:#FFB080; border:1px solid rgba(255,107,43,0.35); }
     .hero-pill-blue { background:rgba(43,107,255,0.2); color:#5B8FFF; border:1px solid rgba(43,107,255,0.35); }
     .hero h1 {
       font-size: clamp(2.8rem, 7.5vw, 6rem);
       font-weight:800; letter-spacing:-0.04em; line-height:0.95; color:white; margin:0 0 24px; max-width:860px;
-      animation: fadeInUp 0.8s ease 0.2s both;
+      animation: fadeInUp 0.85s cubic-bezier(0.22,1,0.36,1) 1.75s both;
     }
     .hero h1 .accent { color:#2B6BFF; }
-    .hero-sub { color:rgba(255,255,255,0.6); font-size:18px; line-height:1.75; max-width:480px; margin:0 0 40px; animation:fadeInUp 0.8s ease 0.35s both; }
-    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-bottom:64px; animation:fadeInUp 0.8s ease 0.5s both; }
+    .hero-sub { color:rgba(255,255,255,0.6); font-size:18px; line-height:1.75; max-width:480px; margin:0 0 40px; animation:fadeInUp 0.75s cubic-bezier(0.22,1,0.36,1) 2.0s both; }
+    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-bottom:64px; animation:fadeInUp 0.75s cubic-bezier(0.22,1,0.36,1) 2.2s both; }
     .hero-stats-bar {
       display:flex; gap:0; padding-top:40px; border-top:1px solid rgba(255,255,255,0.1);
-      flex-wrap:wrap; justify-content:center; width:100%; max-width:700px; animation:fadeInUp 0.8s ease 0.65s both;
+      flex-wrap:wrap; justify-content:center; width:100%; max-width:700px; animation:fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 2.45s both;
     }
     .hero-stat { display:flex; flex-direction:column; align-items:center; padding:0 36px; border-right:1px solid rgba(255,255,255,0.1); }
     .hero-stat:last-child { border-right:none; }
     .hero-stat .n { font-size:1.9rem; font-weight:800; color:white; letter-spacing:-0.04em; line-height:1; }
     .hero-stat .l { font-size:13px; color:rgba(255,255,255,0.4); margin-top:4px; font-weight:500; }
 
-    @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-
     .scroll-hint {
       position:absolute; bottom:32px; left:50%; transform:translateX(-50%); z-index:20;
       display:flex; flex-direction:column; align-items:center; gap:6px;
       color:rgba(255,255,255,0.3); font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+      animation: fadeInUp 0.6s cubic-bezier(0.22,1,0.36,1) 2.7s both;
     }
-    .scroll-hint svg { animation:bounce 2s ease-in-out infinite; }
+    .scroll-hint svg { animation:bounce 2s ease-in-out 3.3s infinite; }
     @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
 
     /* ── PHOTO MOSAIC ── */
@@ -379,16 +393,22 @@
       .award-photo-grid { grid-template-columns:1fr; }
       .help-cards-grid { grid-template-columns:1fr; }
       .stats-grid { grid-template-columns:repeat(2,1fr); }
-      .hero-stats-bar { gap:24px; }
-      .hero-stat { padding:0 20px; }
+      .hero-stats-bar { gap:0; padding-top:28px; }
+      .hero-stat { padding:0 16px; }
+      .hero-stat .n { font-size:1.5rem; }
+      .hero-stat .l { font-size:11px; }
       .blog-notify-form { flex-direction:column; }
       .blog-coming-card { padding:48px 24px; }
       .help-card { padding:28px 22px; }
-      .announce-bar { font-size:12px; padding:8px 16px; }
+      .announce-bar { font-size:11px; padding:7px 12px; gap:6px; }
+      .hero-btns { flex-direction:column; align-items:center; gap:10px; margin-bottom:40px; }
+      .hero-btns .btn { width:100%; max-width:280px; justify-content:center; }
+      .hero-pills-row, .hero-award-row { gap:6px; }
+      .step-row { gap:18px; }
     }
     @media (max-width: 480px) {
       .stats-grid { grid-template-columns:1fr; }
-      .hero h1 { font-size:clamp(2.2rem,10vw,3.5rem); }
+      .hero h1 { font-size:clamp(2.1rem,9vw,3rem); }
       .hero-stat .n { font-size:1.4rem; }
       .step-row { flex-direction:column; gap:12px; }
       .step-num-wrap::after { display:none; }
@@ -424,7 +444,7 @@
       <a href="projekty.html" class="nav-underline">Projekty</a>
       <a href="demokracja.html" class="nav-underline">Demokracja</a>
       <a href="dolacz.html" class="nav-underline">Dołącz</a>
-      <a href="blog.html" class="nav-underline">Blog</a>
+      <a href="blog.html" class="nav-blog">Blog</a>
       <a href="kontakt.html" class="nav-cta">Kontakt</a>
     </div>
     <button id="hamburger" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
@@ -436,7 +456,7 @@
     <a href="projekty.html">Projekty</a>
     <a href="demokracja.html">Demokracja</a>
     <a href="dolacz.html">Dołącz do nas</a>
-    <a href="blog.html">Blog</a>
+    <a href="blog.html" class="nav-blog">Blog</a>
     <a href="kontakt.html">Kontakt</a>
   </div>
 </nav>
@@ -491,11 +511,11 @@
       <p class="section-sub" style="margin:0 auto; text-align:center;">Zdjęcia z naszych wydarzeń, wizyt i akcji w całej Polsce.</p>
     </div>
     <div class="photo-mosaic">
-      <div class="photo-tile p1"><img src="brand_assets/dzialania1.jpg" alt="Działania" /></div>
-      <div class="photo-tile p2"><img src="brand_assets/Akcja.jpg" alt="Akcja" /></div>
-      <div class="photo-tile p3"><img src="brand_assets/Sejm.jpg" alt="Sejm" /></div>
-      <div class="photo-tile p4"><img src="brand_assets/Senat.jpg" alt="Senat" /></div>
-      <div class="photo-tile p5"><img src="brand_assets/Akcja2.jpg" alt="Akcja" /></div>
+      <div class="photo-tile p1"><img src="brand_assets/dzialania1.jpg" alt="Działania"  loading="lazy" /></div>
+      <div class="photo-tile p2"><img src="brand_assets/Akcja.jpg" alt="Akcja"  loading="lazy" /></div>
+      <div class="photo-tile p3"><img src="brand_assets/Sejm.jpg" alt="Sejm"  loading="lazy" /></div>
+      <div class="photo-tile p4"><img src="brand_assets/Senat.jpg" alt="Senat"  loading="lazy" /></div>
+      <div class="photo-tile p5"><img src="brand_assets/Akcja2.jpg" alt="Akcja"  loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -555,7 +575,7 @@
         <a href="o-nas.html" class="btn btn-blue">Poznaj naszą historię →</a>
       </div>
       <div style="position:relative;">
-        <img src="brand_assets/Final2.jpg" alt="Głos Przyszłości" style="width:100%; border-radius:20px; object-fit:cover; height:440px; display:block; box-shadow:0 24px 60px rgba(13,27,42,0.2);" />
+        <img src="brand_assets/Final2.jpg" alt="Głos Przyszłości" style="width:100%; border-radius:20px; object-fit:cover; height:440px; display:block; box-shadow:0 24px 60px rgba(13,27,42,0.2);"  loading="lazy" />
         <div style="position:absolute; bottom:-20px; right:-16px; background:white; border-radius:16px; padding:20px 24px; box-shadow:0 8px 32px rgba(13,27,42,0.14);">
           <div style="font-size:2rem; font-weight:800; color:#2B6BFF; letter-spacing:-0.04em;">2×</div>
           <div style="font-size:13px; color:#6B7280; font-weight:600; line-height:1.4;">Złoty Wilk<br/>Zwolnieni z Teorii</div>
@@ -582,14 +602,14 @@
     </div>
     <div class="award-photo-grid">
       <div class="award-block reveal reveal-delay-1">
-        <img src="brand_assets/Nagroda zloty wilk Glos.jpg" alt="Złoty Wilk 2022/23" />
+        <img src="brand_assets/Nagroda zloty wilk Glos.jpg" alt="Złoty Wilk 2022/23"  loading="lazy" />
         <div class="award-block-overlay">
           <div class="award-badge">EDYCJA 2022/2023</div>
           <div class="award-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Złoty Wilk</div>
         </div>
       </div>
       <div class="award-block reveal reveal-delay-2">
-        <img src="brand_assets/Nagroda Srebrny WIlk Glos.jpg" alt="Złoty Wilk 2023/24" />
+        <img src="brand_assets/Nagroda Srebrny WIlk Glos.jpg" alt="Złoty Wilk 2023/24"  loading="lazy" />
         <div class="award-block-overlay">
           <div class="award-badge">EDYCJA 2023/2024</div>
           <div class="award-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Złoty Wilk</div>
@@ -613,7 +633,7 @@
     </div>
     <div class="grid-3">
       <a href="projekty.html" class="preview-card reveal reveal-delay-1">
-        <div class="preview-thumb"><img src="brand_assets/dzialania1.jpg" alt="Projekty" /></div>
+        <div class="preview-thumb"><img src="brand_assets/dzialania1.jpg" alt="Projekty"  loading="lazy" /></div>
         <div class="preview-body">
           <div class="preview-tag" style="color:#2B6BFF;">Projekty</div>
           <h3>Wspieramy zmiany</h3>
@@ -622,7 +642,7 @@
         </div>
       </a>
       <a href="demokracja.html" class="preview-card reveal reveal-delay-2">
-        <div class="preview-thumb"><img src="brand_assets/Sejm.jpg" alt="Demokracja" /></div>
+        <div class="preview-thumb"><img src="brand_assets/Sejm.jpg" alt="Demokracja"  loading="lazy" /></div>
         <div class="preview-body">
           <div class="preview-tag" style="color:#FF6B2B;">Demokracja</div>
           <h3>Edukacja obywatelska</h3>
@@ -631,7 +651,7 @@
         </div>
       </a>
       <a href="dolacz.html" class="preview-card reveal reveal-delay-3">
-        <div class="preview-thumb"><img src="brand_assets/Akcja2.jpg" alt="Dołącz" /></div>
+        <div class="preview-thumb"><img src="brand_assets/Akcja2.jpg" alt="Dołącz"  loading="lazy" /></div>
         <div class="preview-body">
           <div class="preview-tag" style="color:#2B6BFF;">Dołącz</div>
           <h3>Działaj razem z nami</h3>
@@ -713,10 +733,7 @@
   h.addEventListener('click',()=>{open=!open;open?m.classList.add('open'):m.classList.remove('open');s1.style.transform=open?'rotate(45deg) translate(4px,4px)':'';s2.style.opacity=open?'0':'';s3.style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';});
   m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;m.classList.remove('open');s1.style.transform=s2.style.opacity=s3.style.transform='';}));
 
-  // ── Scroll reveal ──
-  document.querySelectorAll('.reveal').forEach(el=>{
-    new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08}).observe(el);
-  });
+  // ── Scroll reveal handled by _shared.js ──
 
   // ── Hero: Grid Mouse Flashlight ──
   (function(){
@@ -759,6 +776,18 @@
     el.style.transitionDelay=(i*0.12)+'s';
   });
 </script>
+<!-- Cinematic intro: reveal nav + bar after 3s -->
+<script>
+(function(){
+  setTimeout(function(){
+    var bar = document.querySelector('.announce-bar');
+    var nav = document.getElementById('navbar');
+    if(bar) bar.classList.add('intro-done');
+    if(nav) nav.classList.add('intro-done');
+  }, 3000);
+})();
+</script>
+<script src="_shared.js"></script>
 <script src="_beams.js"></script>
 <script src="_cursor.js"></script>
 </body>
