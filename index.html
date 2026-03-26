@@ -412,12 +412,21 @@
       .hero-btns .btn { width:100%; max-width:280px; justify-content:center; }
       .hero-pills-row, .hero-award-row { gap:6px; }
       .step-row { gap:18px; }
+      /* Center "Czym się zajmujemy" text column when stacked */
+      .step-body { text-align:left; }
+      .step-row { align-items:center; }
+      [style*="grid-template-columns:1fr 1fr"] > div:first-child .label,
+      [style*="grid-template-columns:1fr 1fr"] > div:first-child h2,
+      [style*="grid-template-columns:1fr 1fr"] > div:first-child p,
+      [style*="grid-template-columns:1fr 1fr"] > div:first-child > a { text-align:center; display:block; margin-left:auto; margin-right:auto; }
+      [style*="grid-template-columns:1fr 1fr"] > div:first-child > a.btn { width:fit-content; }
     }
     @media (max-width: 480px) {
       .stats-grid { grid-template-columns:1fr; }
       .hero h1 { font-size:clamp(2.1rem,9vw,3rem); }
       .hero-stat .n { font-size:1.4rem; }
-      .step-row { flex-direction:column; gap:12px; }
+      .step-row { flex-direction:column; gap:12px; align-items:center; }
+      .step-body { text-align:center; }
       .step-num-wrap::after { display:none; }
     }
   </style>
