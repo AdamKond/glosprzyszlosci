@@ -403,4 +403,5 @@ footer { background: #040a12; padding: 0 0 40px; }
 
   /* Stack hero stats tighter */
   [style*="grid-template-columns:1fr 1fr"] { gap: 20px !important; }
+  .hide-mobile { display: none; }
 }
