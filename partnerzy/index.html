@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="brand_assets/glos logo.png" />
+  <link rel="apple-touch-icon" href="brand_assets/glos logo.png" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partnerzy – Głos Przyszłości</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="_shared.css" />
+  <style>
+    .partner-logo { background: white; border-radius: 16px; padding: 28px 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 16px rgba(13,27,42,0.06); transition: transform 0.25s, box-shadow 0.25s; min-height: 100px; }
+    .partner-logo:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(43,107,255,0.12); }
+    .partner-logo span { font-weight: 700; font-size: 15px; color: #6B7280; text-align: center; line-height: 1.4; }
+    .collab-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 36px 32px; transition: background 0.2s, border-color 0.2s; }
+    .collab-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(43,107,255,0.4); }
+    .offer-item { display: flex; align-items: flex-start; gap: 16px; padding: 20px 0; border-bottom: 1px solid #E8ECF8; }
+    .offer-item:last-child { border-bottom: none; }
+    .offer-check { width: 24px; height: 24px; border-radius: 50%; background: rgba(43,107,255,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; color: #2B6BFF; font-weight: 800; margin-top: 1px; }
+  </style>
+</head>
+<body>
+<div id="page-loader">
+  <div class="loader-logo-wrap">
+    <img src="brand_assets/glos logo.png" alt="" />
+    <div class="loader-logo-text"><div class="t">GŁOS</div><div class="b">PRZYSZŁOŚCI</div></div>
+  </div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+<nav id="navbar">
+  <div class="inner">
+    <a href="/" class="nav-logo"><img src="brand_assets/glos logo.png" alt="Głos Przyszłości" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a>
+    <div class="nav-links">
+      <a href="/">Strona główna</a><a href="/o-nas">O nas</a><a href="/projekty">Projekty</a><a href="/demokracja">Demokracja</a><a href="/dolacz">Dołącz</a><a href="/partnerzy" class="active">Partnerzy</a><a href="/kontakt" class="nav-cta">Kontakt</a>
+    </div>
+    <button id="hamburger" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+  <div id="mobile-menu"><a href="/">Strona główna</a><a href="/o-nas">O nas</a><a href="/projekty">Projekty</a><a href="/demokracja">Demokracja</a><a href="/dolacz">Dołącz do nas</a><a href="/partnerzy">Partnerzy</a><a href="/kontakt">Kontakt</a></div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="badge">Współpraca</div>
+    <h1>Nasi <span>Partnerzy</span></h1>
+    <p>Razem robimy więcej. Współpracujemy ze szkołami, organizacjami, uczelniami i partnerami lokalnymi, którzy podzielają nasze wartości.</p>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<section class="sec-sm sec-blue reveal">
+  <div class="container">
+    <div class="grid-4" style="text-align:center;">
+      <div><div class="stat-num" style="color:white;">45+</div><div class="stat-label">Szkół partnerskich</div></div>
+      <div><div class="stat-num" style="color:white;">12</div><div class="stat-label">Organizacji społecznych</div></div>
+      <div><div class="stat-num" style="color:white;">8</div><div class="stat-label">Uczelni wyższych</div></div>
+      <div><div class="stat-num" style="color:white;">20+</div><div class="stat-label">Partnerów lokalnych</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SZKOŁY -->
+<section class="sec sec-white reveal">
+  <div class="container">
+    <div style="margin-bottom:40px;">
+      <span class="label">Kategoria 01</span>
+      <h2 class="section-title">Szkoły partnerskie</h2>
+      <p class="section-sub">Współpracujemy ze szkołami podstawowymi i średnimi w całej Polsce, prowadząc warsztaty i zajęcia edukacyjne.</p>
+    </div>
+    <div class="grid-4" style="gap:16px; margin-bottom:16px;">
+      <div class="partner-logo"><span>Liceum Ogólnokształcące<br/>im. Króla Jana III Sobieskiego</span></div>
+      <div class="partner-logo"><span>Technikum nr 5<br/>im. Józefa Piłsudskiego</span></div>
+      <div class="partner-logo"><span>Szkoła Podstawowa<br/>nr 142 w Warszawie</span></div>
+      <div class="partner-logo"><span>I LO im. Mikołaja Kopernika<br/>w Gdańsku</span></div>
+    </div>
+    <div class="grid-4" style="gap:16px;">
+      <div class="partner-logo"><span>Zespół Szkół<br/>Ogólnokształcących nr 3</span></div>
+      <div class="partner-logo"><span>LO im. Marii Skłodowskiej-Curie<br/>w Lublinie</span></div>
+      <div class="partner-logo"><span>Szkoła Podstawowa<br/>Montessori „Ziarno"</span></div>
+      <div class="partner-logo"><span>+38 więcej szkół<br/>w całej Polsce</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIZACJE -->
+<section class="sec sec-gray reveal">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;">
+      <div>
+        <span class="label">Kategoria 02</span>
+        <h2 class="section-title" style="margin-bottom:32px;">Organizacje społeczne</h2>
+        <div class="grid-2" style="gap:14px;">
+          <div class="partner-logo"><span>Zwolnieni z Teorii</span></div>
+          <div class="partner-logo"><span>Fundacja Edukacji<br/>Obywatelskiej</span></div>
+          <div class="partner-logo"><span>Stowarzyszenie<br/>Liderów Lokalnych</span></div>
+          <div class="partner-logo"><span>Centrum Inicjatyw<br/>Młodzieżowych</span></div>
+          <div class="partner-logo"><span>Polska Akcja<br/>Humanitarna</span></div>
+          <div class="partner-logo"><span>Forum Młodych<br/>Dyplomatów</span></div>
+        </div>
+      </div>
+      <div>
+        <span class="label">Kategoria 03</span>
+        <h2 class="section-title" style="margin-bottom:32px;">Uczelnie wyższe</h2>
+        <div class="grid-2" style="gap:14px;">
+          <div class="partner-logo"><span>Uniwersytet<br/>Warszawski</span></div>
+          <div class="partner-logo"><span>Szkoła Główna<br/>Handlowa</span></div>
+          <div class="partner-logo"><span>Uniwersytet<br/>Jagielloński</span></div>
+          <div class="partner-logo"><span>Akademia<br/>Leona Koźmińskiego</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERZY LOKALNI -->
+<section class="sec sec-white reveal">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span class="label">Kategoria 04</span>
+      <h2 class="section-title">Partnerzy lokalni</h2>
+      <p class="section-sub" style="margin:0 auto;">Współpracujemy z samorządami, domami kultury i lokalnymi inicjatywami, które chcą budować świadome wspólnoty.</p>
+    </div>
+    <div class="grid-4" style="gap:16px;">
+      <div class="partner-logo"><span>Urząd Dzielnicy<br/>Mokotów</span></div>
+      <div class="partner-logo"><span>Dom Kultury<br/>„Śródmieście"</span></div>
+      <div class="partner-logo"><span>Centrum Wolontariatu<br/>m. st. Warszawy</span></div>
+      <div class="partner-logo"><span>Biblioteka Publiczna<br/>im. Prusa</span></div>
+      <div class="partner-logo"><span>Centrum Aktywności<br/>Lokalnej</span></div>
+      <div class="partner-logo"><span>Osiedlowe Centrum<br/>Kulturalne „Wilanów"</span></div>
+      <div class="partner-logo"><span>Fundacja „Wspólna<br/>Przestrzeń"</span></div>
+      <div class="partner-logo"><span>Urząd Miejski<br/>w Krakowie</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ZOSTAŃ PARTNEREM -->
+<section class="sec sec-dark noise reveal">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;">
+      <div>
+        <span class="label label-light">Dla partnerów</span>
+        <h2 class="section-title light" style="margin-bottom:24px;">Zostań naszym partnerem</h2>
+        <p style="color:rgba(255,255,255,0.65); line-height:1.8; font-size:16px; margin-bottom:32px;">Szukamy partnerów, którzy chcą realnie wspierać edukację obywatelską młodych Polaków. Oferujemy elastyczne formy współpracy dopasowane do Twoich możliwości i potrzeb.</p>
+        <a href="/kontakt" class="btn btn-blue">Napisz do nas →</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0;">
+        <div class="collab-card" style="border-radius:20px 20px 0 0; margin-bottom:2px;">
+          <div style="font-weight:700; color:white; margin-bottom:8px; display:flex; align-items:center; gap:10px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg> Szkoły i placówki edukacyjne</div>
+          <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.65; margin:0;">Prowadzamy bezpłatne warsztaty demokratyczne dla uczniów. Dostosowujemy program do wieku i potrzeb grupy.</p>
+        </div>
+        <div class="collab-card" style="border-radius:0; margin-bottom:2px;">
+          <div style="font-weight:700; color:white; margin-bottom:8px; display:flex; align-items:center; gap:10px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22h20M4 22V10l8-8 8 8v12M9 22v-5h6v5"/><line x1="12" y1="2" x2="12" y2="5"/></svg> Samorządy i instytucje</div>
+          <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.65; margin:0;">Wspieramy inicjatywy partycypacji obywatelskiej, budżety partycypacyjne i konsultacje społeczne z młodzieżą.</p>
+        </div>
+        <div class="collab-card" style="border-radius:0; margin-bottom:2px;">
+          <div style="font-weight:700; color:white; margin-bottom:8px; display:flex; align-items:center; gap:10px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Uczelnie i instytuty badawcze</div>
+          <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.65; margin:0;">Realizujemy wspólne projekty badawcze, organizujemy debaty akademickie i oferujemy staże dla studentów.</p>
+        </div>
+        <div class="collab-card" style="border-radius:0 0 20px 20px;">
+          <div style="font-weight:700; color:white; margin-bottom:8px; display:flex; align-items:center; gap:10px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> Firmy i sponsorzy</div>
+          <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.65; margin:0;">Oferujemy widoczność marki przy naszych projektach i możliwość zaangażowania pracowników jako mentorów.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CO OFERUJEMY PARTNEROM -->
+<section class="sec sec-gray reveal">
+  <div class="container">
+    <div style="max-width:760px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:48px;">
+        <span class="label">Dla Ciebie</span>
+        <h2 class="section-title">Co oferujemy partnerom?</h2>
+      </div>
+      <div style="background:white; border-radius:20px; padding:40px; box-shadow:0 4px 24px rgba(13,27,42,0.06);">
+        <div class="offer-item">
+          <div class="offer-check">✓</div>
+          <div><div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Widoczność w mediach i na stronie</div><div style="font-size:14px; color:#6B7280; line-height:1.65;">Logo i wzmianka na naszej stronie, w mediach społecznościowych i materiałach eventowych.</div></div>
+        </div>
+        <div class="offer-item">
+          <div class="offer-check">✓</div>
+          <div><div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Dostęp do naszej sieci</div><div style="font-size:14px; color:#6B7280; line-height:1.65;">Kontakty z aktywną, zaangażowaną młodzieżą, ekspertami i innymi organizacjami z sektora NGO.</div></div>
+        </div>
+        <div class="offer-item">
+          <div class="offer-check">✓</div>
+          <div><div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Wspólne projekty i badania</div><div style="font-size:14px; color:#6B7280; line-height:1.65;">Możliwość współtworzenia programów edukacyjnych i raportów z zakresu edukacji obywatelskiej.</div></div>
+        </div>
+        <div class="offer-item">
+          <div class="offer-check">✓</div>
+          <div><div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Zaproszenia na wydarzenia</div><div style="font-size:14px; color:#6B7280; line-height:1.65;">Udział w debatach, warsztatach i galach, w tym na ceremonii Złotego Wilka.</div></div>
+        </div>
+        <div class="offer-item">
+          <div class="offer-check">✓</div>
+          <div><div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Sprawozdawczość i transparentność</div><div style="font-size:14px; color:#6B7280; line-height:1.65;">Regularne raporty z realizacji projektów i wyników naszych działań edukacyjnych.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="footer-top-bar"></div><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo"><img src="brand_assets/glos logo.png" alt="" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a><p>Budujemy pokolenie świadomych obywateli poprzez edukację, dialog i zaangażowanie społeczne.</p><span class="footer-award"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Dwukrotny Złoty Wilk</span></div><div class="footer-col"><div class="footer-col-title">Strony</div><a href="/">Strona główna</a><a href="/o-nas">O nas</a><a href="/projekty">Projekty</a><a href="/demokracja">Demokracja</a></div><div class="footer-col"><div class="footer-col-title">Działaj</div><a href="/dolacz">Dołącz do nas</a><a href="/blog" class="nav-blog">Blog</a><a href="/kontakt">Kontakt</a><a href="#">Polityka prywatności</a><a href="#">RODO</a></div><div class="footer-col"><div class="footer-col-title">Kontakt</div><a href="mailto:kontakt@glosprzyszlosci.pl">kontakt@glosprzyszlosci.pl</a><a href="http://glosprzyszlosci.pl">glosprzyszlosci.pl</a></div></div><div class="footer-bottom"><span>© 2025 Głos Przyszłości. Wszelkie prawa zastrzeżone.</span><div class="footer-bottom-links"><a href="#">Polityka prywatności</a><a href="#">RODO</a><a href="/kontakt">Kontakt</a></div></div></div></footer>
+<script>const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),s1=document.getElementById('h1'),s2=document.getElementById('h2'),s3=document.getElementById('h3');let open=false;h.addEventListener('click',()=>{open=!open;open?m.classList.add('open'):m.classList.remove('open');s1.style.transform=open?'rotate(45deg) translate(4px,4px)':'';s2.style.opacity=open?'0':'';s3.style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;m.classList.remove('open');s1.style.transform=s2.style.opacity=s3.style.transform='';}));</script>
+<script src="_shared.js"></script>
+<script src="_beams.js"></script>
+<script src="_cursor.js"></script>
+</body></html>

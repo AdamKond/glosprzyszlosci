@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="brand_assets/glos logo.png" />
+  <link rel="apple-touch-icon" href="brand_assets/glos logo.png" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dołącz – Głos Przyszłości</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="_shared.css" />
+  <style>
+    .benefit-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .benefit-dot { width: 10px; height: 10px; border-radius: 50%; background: #2B6BFF; flex-shrink: 0; margin-top: 6px; }
+    .step-badge { width: 36px; height: 36px; border-radius: 50%; background: rgba(43,107,255,0.15); color: #2B6BFF; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .check-group { display: flex; flex-direction: column; gap: 10px; }
+    .check-item { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .check-item input[type=checkbox] { width: 18px; height: 18px; accent-color: #2B6BFF; cursor: pointer; }
+    .check-item span { font-size: 14px; font-weight: 600; color: #0D1B2A; }
+    .success-msg { display: none; text-align: center; padding: 48px 32px; }
+    .success-msg.show { display: block; }
+    #join-form-wrap.hidden { display: none; }
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr !important; }
+      #join-form-wrap { padding: 28px 20px !important; border-radius: 18px !important; }
+    }
+  </style>
+</head>
+<body>
+<div id="page-loader">
+  <div class="loader-logo-wrap">
+    <img src="brand_assets/glos logo.png" alt="" />
+    <div class="loader-logo-text"><div class="t">GŁOS</div><div class="b">PRZYSZŁOŚCI</div></div>
+  </div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+<nav id="navbar">
+  <div class="inner">
+    <a href="/" class="nav-logo"><img src="brand_assets/glos logo.png" alt="Głos Przyszłości" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a>
+    <div class="nav-links">
+      <a href="/">Strona główna</a><a href="/o-nas">O nas</a><a href="/projekty">Projekty</a><a href="/demokracja">Demokracja</a><a href="/dolacz" class="active">Dołącz</a><a href="/blog" class="nav-blog">Blog</a><a href="/kontakt" class="nav-cta">Kontakt</a>
+    </div>
+    <button id="hamburger" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+  <div id="mobile-menu"><a href="/">Strona główna</a><a href="/o-nas">O nas</a><a href="/projekty">Projekty</a><a href="/demokracja">Demokracja</a><a href="/dolacz">Dołącz do nas</a><a href="/blog" class="nav-blog">Blog</a><a href="/kontakt">Kontakt</a></div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="badge">Rekrutacja otwarta</div>
+    <h1>Dołącz do <span>Głosu</span></h1>
+    <p>Stań się częścią ruchu, który realnie zmienia świadomość młodych Polaków. Szukamy ludzi z pasją i chęcią działania.</p>
+  </div>
+</div>
+
+<!-- DLACZEGO WARTO -->
+<section class="sec sec-white reveal">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <div class="c-panel">
+        <span class="label">Dlaczego warto?</span>
+        <h2 class="section-title" style="margin-bottom:32px;">Co zyskujesz dołączając?</h2>
+        <div class="benefit-item">
+          <div class="benefit-dot"></div>
+          <div>
+            <div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Realne doświadczenie</div>
+            <div style="font-size:14px; color:#6B7280; line-height:1.65;">Pracujesz przy prawdziwych projektach — nie symulacjach. Twoje działania mają konkretny wpływ na społeczność.</div>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-dot" style="background:#FF6B2B;"></div>
+          <div>
+            <div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Sieć kontaktów</div>
+            <div style="font-size:14px; color:#6B7280; line-height:1.65;">Poznasz aktywnych młodych ludzi, ekspertów, polityków, dziennikarzy i liderów z całej Polski.</div>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-dot"></div>
+          <div>
+            <div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Rozwój umiejętności</div>
+            <div style="font-size:14px; color:#6B7280; line-height:1.65;">Szkolenia z public speaking, zarządzania projektem, prawa, komunikacji i przywództwa.</div>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-dot" style="background:#FF6B2B;"></div>
+          <div>
+            <div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Prestiżowe nagrody</div>
+            <div style="font-size:14px; color:#6B7280; line-height:1.65;">Działamy w ramach programu Zwolnieni z Teorii — dwukrotni laureaci Złotego Wilka.</div>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-dot"></div>
+          <div>
+            <div style="font-weight:700; color:#0D1B2A; margin-bottom:4px;">Wpływ na przyszłość</div>
+            <div style="font-size:14px; color:#6B7280; line-height:1.65;">Budujesz społeczeństwo świadomych obywateli. To nie tylko CV — to dziedzictwo, które zostawisz.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="background:linear-gradient(135deg,#0D1B2A,#162236); border-radius:28px; padding:40px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; color:#5B8FFF; text-transform:uppercase; margin-bottom:20px;">Jak to działa?</div>
+          <div style="display:flex; flex-direction:column; gap:20px;">
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div class="step-badge">1</div>
+              <div><div style="font-weight:700; color:white; margin-bottom:4px;">Wypełnij formularz</div><div style="font-size:13px; color:rgba(255,255,255,0.55);">Opowiedz nam o sobie i swoich motywacjach. Zajmuje to ok. 5 minut.</div></div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div class="step-badge" style="background:rgba(255,107,43,0.2); color:#FF8C57;">2</div>
+              <div><div style="font-weight:700; color:white; margin-bottom:4px;">Skontaktujemy się z Tobą</div><div style="font-size:13px; color:rgba(255,255,255,0.55);">W ciągu 7 dni od zgłoszenia odezwiemy się e-mailem lub telefonicznie.</div></div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div class="step-badge">3</div>
+              <div><div style="font-weight:700; color:white; margin-bottom:4px;">Krótka rozmowa</div><div style="font-size:13px; color:rgba(255,255,255,0.55);">Poznajemy się wzajemnie — online lub na żywo. Bez formalności, po ludzku.</div></div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div class="step-badge" style="background:rgba(255,107,43,0.2); color:#FF8C57;">4</div>
+              <div><div style="font-weight:700; color:white; margin-bottom:4px;">Witamy na pokładzie!</div><div style="font-size:13px; color:rgba(255,255,255,0.55);">Dołączasz do zespołu i od razu możesz zacząć działać przy projektach.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARZ -->
+<section class="sec sec-gray reveal">
+  <div class="container">
+    <div style="max-width:760px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:48px;">
+        <span class="label">Formularz rekrutacyjny</span>
+        <h2 class="section-title">Zgłoś się do nas</h2>
+        <p class="section-sub" style="margin:0 auto;">Wszystkie pola oznaczone * są wymagane.</p>
+      </div>
+      <div id="join-form-wrap" style="background:white; border-radius:24px; padding:48px; box-shadow:0 4px 32px rgba(13,27,42,0.08);">
+        <form id="join-form" novalidate>
+          <div class="grid-2" style="margin-bottom:20px;">
+            <div class="form-field" style="margin:0;">
+              <label class="form-label">Imię i nazwisko *</label>
+              <input type="text" class="form-input" id="f-name" placeholder="np. Anna Kowalska" />
+              <div class="err" style="display:none; color:#EF4444; font-size:13px; margin-top:4px;"></div>
+            </div>
+            <div class="form-field" style="margin:0;">
+              <label class="form-label">Wiek *</label>
+              <input type="number" class="form-input" id="f-age" placeholder="np. 19" min="13" max="35" />
+              <div class="err" style="display:none; color:#EF4444; font-size:13px; margin-top:4px;"></div>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-bottom:20px;">
+            <div class="form-field" style="margin:0;">
+              <label class="form-label">Adres e-mail *</label>
+              <input type="email" class="form-input" id="f-email" placeholder="np. anna@example.com" />
+              <div class="err" style="display:none; color:#EF4444; font-size:13px; margin-top:4px;"></div>
+            </div>
+            <div class="form-field" style="margin:0;">
+              <label class="form-label">Miasto *</label>
+              <input type="text" class="form-input" id="f-city" placeholder="np. Warszawa" />
+              <div class="err" style="display:none; color:#EF4444; font-size:13px; margin-top:4px;"></div>
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Numer telefonu</label>
+            <input type="tel" class="form-input" id="f-phone" placeholder="np. 500 123 456" />
+          </div>
+          <div class="form-field">
+            <label class="form-label">Dlaczego chcesz dołączyć? *</label>
+            <textarea class="form-input" id="f-why" rows="4" placeholder="Opowiedz nam o swoich motywacjach, pasjach i tym, co chciałbyś/chciałabyś robić w organizacji..."></textarea>
+            <div class="err" style="display:none; color:#EF4444; font-size:13px; margin-top:4px;"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" style="margin-bottom:14px;">Jak chcesz się zaangażować? (możesz zaznaczyć kilka)</label>
+            <div class="check-group">
+              <label class="check-item"><input type="checkbox" name="engage" value="wolontariat" /><span>Wolontariat</span></label>
+              <label class="check-item"><input type="checkbox" name="engage" value="projekty" /><span>Udział w projektach</span></label>
+              <label class="check-item"><input type="checkbox" name="engage" value="wydarzenia" /><span>Organizacja wydarzeń</span></label>
+              <label class="check-item"><input type="checkbox" name="engage" value="szkoly" /><span>Współpraca ze szkołami</span></label>
+              <label class="check-item"><input type="checkbox" name="engage" value="media" /><span>Media społecznościowe i komunikacja</span></label>
+              <label class="check-item"><input type="checkbox" name="engage" value="inne" /><span>Inne / jestem otwarty(-a) na propozycje</span></label>
+            </div>
+          </div>
+          <div id="form-err-general" style="display:none; background:#FEF2F2; border:1px solid #FECACA; border-radius:10px; padding:14px 18px; font-size:14px; color:#DC2626; margin-bottom:20px;"></div>
+          <button type="submit" class="btn btn-blue" style="width:100%; font-size:16px; padding:16px;">Wyślij zgłoszenie →</button>
+        </form>
+      </div>
+      <div class="success-msg" id="success-msg">
+        <div style="width:72px; height:72px; border-radius:50%; background:rgba(16,185,129,0.12); display:flex; align-items:center; justify-content:center; margin:0 auto 24px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3 style="font-size:1.6rem; font-weight:800; color:#0D1B2A; margin:0 0 12px;">Dziękujemy za zgłoszenie!</h3>
+        <p style="color:#6B7280; font-size:16px; line-height:1.7; max-width:400px; margin:0 auto;">Odezwiemy się do Ciebie w ciągu 7 dni roboczych. Do zobaczenia!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KOGO SZUKAMY -->
+<section class="sec sec-dark noise reveal">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+      <div>
+        <span class="label label-light">Profil kandydata</span>
+        <h2 class="section-title light" style="margin-bottom:24px;">Kogo szukamy?</h2>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; align-items:center; gap:14px;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(255,107,43,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF8C57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div style="color:white; font-weight:700;">Pasjonatów — pasja ważniejsza niż CV</div></div>
+          <div style="display:flex; align-items:center; gap:14px;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(43,107,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B8FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div style="color:white; font-weight:700;">Graczy zespołowych — nie ma tu miejsca na ego</div></div>
+          <div style="display:flex; align-items:center; gap:14px;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(255,107,43,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF8C57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/><path d="M16 12l-4 4-2-2"/></svg></div><div style="color:white; font-weight:700;">Zorientowanych na cel — robimy, nie mówimy</div></div>
+          <div style="display:flex; align-items:center; gap:14px;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(43,107,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B8FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div style="color:white; font-weight:700;">Otwartych umysłów — liczy się dialog</div></div>
+          <div style="display:flex; align-items:center; gap:14px;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(43,107,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B8FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div style="color:white; font-weight:700;">Chętnych do nauki — rozwijamy się razem</div></div>
+        </div>
+      </div>
+      <div style="border-radius:20px; overflow:hidden; height:380px;">
+        <img src="brand_assets/Akcja.jpg" alt="Działamy razem" style="width:100%;height:100%;object-fit:cover;display:block;"  loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="footer-top-bar"></div><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="/" class="nav-logo"><img src="brand_assets/glos logo.png" alt="" style="height:36px;" /><div class="nav-logo-text"><div class="top">GŁOS</div><div class="bot">PRZYSZŁOŚCI</div></div></a><p>Budujemy pokolenie świadomych obywateli poprzez edukację, dialog i zaangażowanie społeczne.</p><span class="footer-award"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V5h3m12 4h3V5h-3M6 5h12v6a6 6 0 0 1-12 0V5z"/><path d="M12 17v4M8 21h8"/></svg> Dwukrotny Złoty Wilk</span></div><div class="footer-col"><div class="footer-col-title">Strony</div><a href="/">Strona główna</a><a href="/o-nas">O nas</a><a href="/projekty">Projekty</a><a href="/demokracja">Demokracja</a></div><div class="footer-col"><div class="footer-col-title">Działaj</div><a href="/dolacz">Dołącz do nas</a><a href="/blog" class="nav-blog">Blog</a><a href="/kontakt">Kontakt</a><a href="#">Polityka prywatności</a><a href="#">RODO</a></div><div class="footer-col"><div class="footer-col-title">Kontakt</div><a href="mailto:kontakt@glosprzyszlosci.pl">kontakt@glosprzyszlosci.pl</a><a href="http://glosprzyszlosci.pl">glosprzyszlosci.pl</a></div></div><div class="footer-bottom"><span>© 2025 Głos Przyszłości. Wszelkie prawa zastrzeżone.</span><div class="footer-bottom-links"><a href="#">Polityka prywatności</a><a href="#">RODO</a><a href="/kontakt">Kontakt</a></div></div></div></footer>
+<script>
+const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),s1=document.getElementById('h1'),s2=document.getElementById('h2'),s3=document.getElementById('h3');let open=false;h.addEventListener('click',()=>{open=!open;open?m.classList.add('open'):m.classList.remove('open');s1.style.transform=open?'rotate(45deg) translate(4px,4px)':'';s2.style.opacity=open?'0':'';s3.style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;m.classList.remove('open');s1.style.transform=s2.style.opacity=s3.style.transform='';}));
+
+document.getElementById('join-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  let valid=true;
+  const fields=[
+    {id:'f-name',msg:'Podaj imię i nazwisko'},
+    {id:'f-age',msg:'Podaj wiek'},
+    {id:'f-email',msg:'Podaj adres e-mail'},
+    {id:'f-city',msg:'Podaj miasto'},
+    {id:'f-why',msg:'Opisz swoje motywacje'}
+  ];
+  fields.forEach(f=>{
+    const el=document.getElementById(f.id);
+    const err=el.nextElementSibling;
+    if(!el.value.trim()||(f.id==='f-email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value))){
+      el.style.borderColor='#EF4444';
+      err.style.display='block';
+      err.textContent=f.id==='f-email'&&el.value.trim()?'Podaj poprawny adres e-mail':f.msg;
+      valid=false;
+    } else {
+      el.style.borderColor='';
+      err.style.display='none';
+    }
+  });
+  if(valid){
+    document.getElementById('join-form-wrap').classList.add('hidden');
+    document.getElementById('success-msg').classList.add('show');
+    window.scrollTo({top:document.getElementById('success-msg').getBoundingClientRect().top+window.scrollY-120,behavior:'smooth'});
+  }
+});
+</script>
+<script src="_shared.js"></script>
+<script src="_beams.js"></script>
+<script src="_cursor.js"></script>
+</body></html>

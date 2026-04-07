@@ -38,12 +38,34 @@ const SECURITY_HEADERS = {
     "frame-ancestors 'none';",
 };
 
-const server = http.createServer((req, res) => {
-  let urlPath = req.url.split('?')[0];
-  if (urlPath === '/') urlPath = '/index.html';
+function resolvePath(urlPath) {
+  // Try exact path, then /index.html inside directory, then .html extension
+  const candidates = [
+    urlPath === '/' ? '/index.html' : urlPath,
+    urlPath.replace(/\/$/, '') + '/index.html',
+    urlPath + '.html',
+  ];
+  for (const p of candidates) {
+    const full = path.resolve(__dirname, '.' + path.normalize('/' + decodeURIComponent(p)));
+    if (full.startsWith(__dirname + path.sep) || full === __dirname) {
+      if (fs.existsSync(full) && fs.statSync(full).isFile()) return full;
+    }
+  }
+  return null;
+}
 
-  // Prevent path traversal: resolve and ensure it stays within __dirname
-  const filePath = path.resolve(__dirname, '.' + path.normalize('/' + decodeURIComponent(urlPath)));
+const server = http.createServer((req, res) => {
+  const urlPath = req.url.split('?')[0];
+
+  const filePath = resolvePath(urlPath);
+
+  if (!filePath) {
+    res.writeHead(404, { 'Content-Type': 'text/plain', ...SECURITY_HEADERS });
+    res.end('404 Not Found');
+    return;
+  }
+
+  // Security: must stay within project root
   if (!filePath.startsWith(__dirname + path.sep) && filePath !== __dirname) {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     res.end('403 Forbidden');
@@ -55,13 +77,8 @@ const server = http.createServer((req, res) => {
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      if (err.code === 'ENOENT') {
-        res.writeHead(404, { 'Content-Type': 'text/plain', ...SECURITY_HEADERS });
-        res.end('404 Not Found');
-      } else {
-        res.writeHead(500, { 'Content-Type': 'text/plain', ...SECURITY_HEADERS });
-        res.end('500 Server Error');
-      }
+      res.writeHead(500, { 'Content-Type': 'text/plain', ...SECURITY_HEADERS });
+      res.end('500 Server Error');
       return;
     }
     res.writeHead(200, {
