@@ -179,7 +179,57 @@
     }
     .filter-select:focus { outline: none; border-color: #2B6BFF; }
     .filter-select.active { border-color: #2B6BFF; color: #2B6BFF; }
+    /* ── STICKY FILTER ── */
+    .blog-filter-bar.is-sticky {
+      position: sticky; top: 64px; z-index: 90;
+      box-shadow: 0 4px 20px rgba(13,27,42,0.08);
+    }
+
+    /* ── FILTER ANIMATION ── */
+    .blog-card {
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.25s ease,
+                  opacity 0.25s ease,
+                  scale 0.25s ease;
+    }
+    .blog-card.hiding {
+      opacity: 0; scale: 0.96; pointer-events: none;
+    }
     .blog-card.hidden { display: none; }
+
+    /* ── RESULT COUNT ── */
+    .filter-result-count {
+      margin-left: auto;
+      font-size: 11px; font-weight: 600;
+      color: rgba(13,27,42,0.35);
+      white-space: nowrap;
+    }
+    .filter-result-count strong { color: #2B6BFF; }
+
+    /* ── CARD ENTRANCE ANIMATION ── */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .blog-card.card-entered {
+      animation: cardIn 0.45s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* ── IMAGE SHIMMER ── */
+    .blog-card-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+      transform: translateX(-100%);
+      transition: none;
+    }
+    .blog-card:hover .blog-card-img::after {
+      animation: shimmer 0.6s ease forwards;
+    }
+    @keyframes shimmer {
+      to { transform: translateX(100%); }
+    }
+
     .blog-no-results {
       display: none; grid-column: 1/-1;
       text-align: center; padding: 64px 0;
@@ -274,6 +324,7 @@
           <option value="nie-dla-raka">Nie dla raka u Polaka</option>
         </select>
       </div>
+      <span class="filter-result-count" id="filter-count"><strong>30</strong> / 30</span>
     </div>
   </div>
 </div>
@@ -699,22 +750,74 @@
 </script>
 <script>
   (function() {
+    var TOTAL = 30;
     var cards = Array.from(document.querySelectorAll('.blog-card'));
     var catPills = document.querySelectorAll('[data-filter-cat]');
     var projectSelect = document.getElementById('filter-project');
     var noResults = document.getElementById('no-results');
+    var countEl = document.getElementById('filter-count');
+    var filterBar = document.querySelector('.blog-filter-bar');
     var activeCat = '*', activeProject = '*';
+    var filterTimer = null;
 
+    /* ── Sticky filter bar ── */
+    var heroEl = document.querySelector('.blog-hero');
+    function onScroll() {
+      var heroBottom = heroEl.getBoundingClientRect().bottom;
+      filterBar.classList.toggle('is-sticky', heroBottom <= 64);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* ── Card entrance on load ── */
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var card = e.target;
+          var idx = cards.indexOf(card);
+          card.style.animationDelay = (idx % 3) * 80 + 'ms';
+          card.classList.add('card-entered');
+          io.unobserve(card);
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(function(c) { io.observe(c); });
+
+    /* ── Filter with fade animation ── */
     function applyFilter() {
       var visible = 0;
       cards.forEach(function(c) {
         var catMatch = activeCat === '*' || c.dataset.cat === activeCat;
         var projMatch = activeProject === '*' || c.dataset.project === activeProject;
         var show = catMatch && projMatch;
-        c.classList.toggle('hidden', !show);
+
+        if (!show && !c.classList.contains('hidden')) {
+          c.classList.add('hiding');
+          (function(card) {
+            setTimeout(function() {
+              card.classList.add('hidden');
+              card.classList.remove('hiding');
+            }, 220);
+          })(c);
+        } else if (show && c.classList.contains('hidden')) {
+          c.classList.remove('hidden');
+          /* force reflow so transition fires */
+          void c.offsetWidth;
+          c.classList.remove('hiding');
+        } else if (show) {
+          c.classList.remove('hiding');
+        }
         if (show) visible++;
       });
-      noResults.style.display = visible === 0 ? 'block' : 'none';
+
+      /* Update count */
+      if (countEl) {
+        countEl.innerHTML = '<strong>' + visible + '</strong> / ' + TOTAL;
+      }
+
+      setTimeout(function() {
+        var actualVisible = cards.filter(function(c) { return !c.classList.contains('hidden'); }).length;
+        noResults.style.display = actualVisible === 0 ? 'block' : 'none';
+      }, 250);
     }
 
     catPills.forEach(function(btn) {
