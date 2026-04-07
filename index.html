@@ -429,6 +429,10 @@
       .step-row { flex-direction:column; gap:12px; align-items:center; }
       .step-body { text-align:center; }
       .step-num-wrap::after { display:none; }
+      /* Push Ogólnopolski stat to its own row with spacing */
+      .hero-stat:last-child { margin-top: 16px; width: 100%; border-top: 1px solid rgba(255,255,255,0.08); border-right: none; padding-top: 16px; }
+      /* Center scroll hint */
+      .scroll-hint { left: 50%; transform: translateX(-50%); }
     }
   </style>
 </head>
