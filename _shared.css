@@ -398,7 +398,9 @@ footer { background: #040a12; padding: 0 0 40px; }
   .container { padding: 0 16px; }
   .sec { padding: 44px 0; }
   .page-hero { padding: 88px 0 44px; }
-  h2.section-title { font-size: clamp(1.6rem, 8vw, 2rem); }
+  h2.section-title { font-size: clamp(1.6rem, 8vw, 2rem); text-align: center; }
+  .label { display: block; text-align: center; }
+  .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
   .btn { padding: 12px 22px; font-size: 14px; }
 
   /* Stack hero stats tighter */
