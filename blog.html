@@ -184,6 +184,9 @@
       position: sticky; top: 64px; z-index: 90;
       box-shadow: 0 4px 20px rgba(13,27,42,0.08);
     }
+    @media(max-width: 640px) {
+      .blog-filter-bar.is-sticky { position: static; box-shadow: none; }
+    }
 
     /* ── FILTER ANIMATION ── */
     .blog-card {
